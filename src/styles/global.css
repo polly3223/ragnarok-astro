@@ -308,27 +308,6 @@
   background: var(--fx-cover);
 }
 
-/* "LAUNCH IN HOURS" highlight sweeping back and forth */
-@property --shimmer {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: -43%;
-}
-.shimmer {
-  mask: linear-gradient(94deg, #00000080 var(--shimmer), #000 calc(var(--shimmer) + 21%), #00000080 calc(var(--shimmer) + 41%));
-  animation: shimmer 2s ease-in-out 1s infinite;
-}
-@keyframes shimmer {
-  40%,
-  50% {
-    --shimmer: 107%;
-  }
-  90%,
-  100% {
-    --shimmer: -43%;
-  }
-}
-
 /* Block-cursor typewriter (scripts/digital-typewriter.ts) */
 .dt-line {
   white-space: pre;

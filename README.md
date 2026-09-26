@@ -55,12 +55,12 @@ works. Serve `404.html` for unknown paths.
 
 ```
 src/pages/         routes: home, about, pricing, contact, blog/, careers/, legal/, auth pages, 404
-src/layouts/       Layout.astro: head, navbar, side margins, CTA marquee, footer, Buy Template card
+src/layouts/       Layout.astro: head, navbar, side margins, CTA marquee, footer
 src/components/    ui/ (shared pieces), layout/, home/, sections/ (pricing, FAQ), blog/, careers/,
                    pricing/, auth/
 src/content/       Markdown collections: blog posts, jobs; legal.md (stand-in bodies, see above)
 src/data/          plans and FAQ lists
-src/scripts/       interactions: navbar, sliders, tickers, typewriters, hover effects, preloader…
+src/scripts/       interactions: navbar, sliders, tickers, typewriters, hover effects…
 src/icons/         SVG icons recreated from the template's inline SVGs
 src/styles/        global.css: Tailwind theme (colours, fonts, breakpoints 810/1200), type styles
 public/            local copies of the template's assets; sources in assets.manifest.json
@@ -72,11 +72,11 @@ public/            local copies of the template's assets; sources in assets.mani
   send anything. On submit the button briefly reads "Not sent · static demo". The Google and GitHub
   buttons are inert.
 - **Outbound links** that go to accurate destinations are kept from the template: Framer referral CTAs,
-  the Contra "Buy Template" page, FrameAuth and the map link. The template attached its author's
+  FrameAuth and the map link. The template attached its author's
   personal social profiles to fictional team members and to the brand's footer icons. Those, and the
   placeholder phone numbers and email, point at `#` here. The footer's "Made by" credits link to the
   template's real creators.
-- **Motion** mirrors the original, including the home preloader, ASCII video backgrounds (canvas),
+- **Motion** mirrors the original, including ASCII video backgrounds (canvas),
   scramble and pixel hover effects, tickers, the hero sequence, the testimonial slider and counters.
 
 ## Credits
@@ -84,3 +84,6 @@ public/            local copies of the template's assets; sources in assets.mani
 Design reference: [Ragnarok](https://ragnarok.framer.ai/). Original creator credits are preserved
 in the footer. `assets.manifest.json` records the source URL of each third-party asset.
 Third-party designs, images, videos and fonts retain their original rights and licenses.
+
+The opening loading overlay and floating template-purchase badge have been removed. The page
+displays as soon as the browser can render it, without an artificial loading delay.

@@ -1,9 +1,7 @@
 ---
 import "../styles/global.css";
-import BuyTemplate from "../components/layout/BuyTemplate.astro";
 import CtaMarquee from "../components/layout/CtaMarquee.astro";
 import Footer from "../components/layout/Footer.astro";
-import Preloader from "../components/home/Preloader.astro";
 import MobileAppCta from "../components/layout/MobileAppCta.astro";
 import Navbar from "../components/layout/Navbar.astro";
 import SideMargins from "../components/layout/SideMargins.astro";
@@ -13,11 +11,9 @@ interface Props {
   image?: string;
   /** Show the "Be First to Try the Mobile App" section before the footer. */
   mobileApp?: boolean;
-  /** Play the home-page loading overlay. */
-  preloader?: boolean;
 }
 
-const { title = "Ragnarok - AI Agent Template", image = "/images/og.png", mobileApp = false, preloader = false } = Astro.props;
+const { title = "Ragnarok - AI Agent Template", image = "/images/og.png", mobileApp = false } = Astro.props;
 const description = "Ragnarok AI helps AI agent startups launch with authority, clarity, and pure tech vibes.";
 ---
 
@@ -45,7 +41,6 @@ const description = "Ragnarok AI helps AI agent startups launch with authority, 
     <link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin />
   </head>
   <body class="min-h-screen overflow-x-clip">
-    {preloader && <Preloader />}
     <SideMargins />
     <Navbar />
     <main class="mx-auto flex w-full max-w-[1920px] flex-col items-center overflow-clip px-5 md:px-10">
@@ -54,7 +49,6 @@ const description = "Ragnarok AI helps AI agent startups launch with authority, 
     {mobileApp && <MobileAppCta />}
     <CtaMarquee />
     <Footer />
-    <BuyTemplate />
     <script>
       import "../scripts/hover-effects.ts";
     </script>
