@@ -31,8 +31,8 @@ bun run preview
 ```
 
 Open **http://127.0.0.1:4396** for the production preview. Stop the development server first if
-it is already using that port. To use a different port, run `bun run dev --port 4400` or
-`bun run preview --port 4400`.
+it is already using that port. To use a different port, run `bun --bun astro dev --port 4400` or
+`bun --bun astro preview --port 4400`.
 
 ## Commands
 
