@@ -1,0 +1,23 @@
+---
+// Badge + heading + lead block that opens most sections (`as="h1"` at page tops, `hero` for the larger size).
+import SectionBadge from "./SectionBadge.astro";
+
+interface Props {
+  icon: string;
+  label: string;
+  title: string;
+  lead: string;
+  as?: "h1" | "h2";
+  center?: boolean;
+  hero?: boolean;
+  class?: string;
+}
+
+const { icon, label, title, lead, as: Heading = "h2", center = false, hero = false, class: className } = Astro.props;
+---
+
+<div class:list={["relative z-2 flex w-full flex-col gap-6", center && "items-center text-center", className]}>
+  <SectionBadge icon={icon} label={label} />
+  <Heading class:list={[hero ? "type-hero" : "type-h2", "text-ink"]}>{title}</Heading>
+  <p class="type-lead">{lead}</p>
+</div>

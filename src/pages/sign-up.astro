@@ -1,0 +1,19 @@
+---
+import AuthField from "../components/auth/AuthField.astro";
+import AuthShell from "../components/auth/AuthShell.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <AuthShell height={555}
+    title="Sign up"
+    lead="Create a free account"
+    card={{ title: "Already have an account?", href: "/sign-in", label: "Sign In" }}
+    social
+    submit="Sign Up"
+  >
+    <AuthField label="Name" name="name" placeholder="Name" />
+    <AuthField label="Email" name="email" placeholder="Email" />
+    <AuthField label="Password" name="password" type="password" placeholder="Password" />
+  </AuthShell>
+</Layout>

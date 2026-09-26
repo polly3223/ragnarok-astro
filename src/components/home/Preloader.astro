@@ -1,0 +1,62 @@
+---
+// Home-page loading overlay (scripts/preloader.ts): blue backdrop and pixel grid, the pixel "R"
+// filling white from the bottom, then the grid's squares vanishing at random. Only shown with JS.
+---
+
+<div data-preloader data-state="1" aria-hidden="true" class="preloader fixed inset-0 z-50 items-center justify-center overflow-hidden">
+  <div class="preloader-bg absolute inset-0 z-1 bg-primary"></div>
+  <div data-preloader-grid class="absolute inset-0 z-2 grid"></div>
+  <div class="preloader-logo relative z-3 overflow-clip px-50">
+    <div class="relative size-50">
+      <img src="/images/brand/preloader-logo.png" alt="" class="preloader-mark size-full" />
+      <span class="preloader-mask absolute top-0 left-0 h-full w-full bg-primary opacity-90"></span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .preloader {
+    display: none;
+  }
+  :global([data-js]) .preloader {
+    display: flex;
+  }
+  /* Timings and easings fitted to per-frame traces of the original (verification/qa/fit-easing.py). */
+  .preloader-logo {
+    scale: 0.765;
+    transition: scale 550ms cubic-bezier(0.05, 0.5, 0.05, 1);
+  }
+  .preloader[data-in] .preloader-logo {
+    scale: 1;
+  }
+  .preloader-mask {
+    transition: height 1650ms cubic-bezier(0.1, 1, 0.75, 1);
+  }
+  .preloader-mark {
+    transition: opacity 750ms cubic-bezier(0.25, 0.85, 0.05, 1);
+  }
+  .preloader-bg {
+    transition: opacity 200ms ease-out;
+  }
+  .preloader[data-state="2"] .preloader-mask {
+    height: 50%;
+  }
+  .preloader[data-state="3"] .preloader-mask,
+  .preloader[data-state="4"] .preloader-mask {
+    top: -200px;
+    height: 20%;
+    transition:
+      top 1750ms cubic-bezier(0.15, 0.2, 0.05, 1),
+      height 1750ms cubic-bezier(0.15, 0.2, 0.05, 1),
+      opacity 2000ms cubic-bezier(0.1, 0.25, 0.05, 1);
+  }
+  .preloader[data-state="4"] .preloader-mask,
+  .preloader[data-state="4"] .preloader-mark,
+  .preloader[data-end] .preloader-bg {
+    opacity: 0;
+  }
+</style>
+
+<script>
+  import "../../scripts/preloader.ts";
+</script>

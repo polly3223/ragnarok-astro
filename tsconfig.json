@@ -1,0 +1,9 @@
+{
+  "extends": "astro/tsconfigs/strictest",
+  "compilerOptions": {
+    // Client scripts are bundled as ES modules; type-check them that way too (no shared globals).
+    "moduleDetection": "force"
+  },
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist"]
+}

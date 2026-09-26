@@ -1,0 +1,136 @@
+---
+import CheckGreen from "../../icons/check-green.svg";
+import Warning from "../../icons/warning.svg";
+import XCircle from "../../icons/x-circle.svg";
+import AsciiVideo from "../ui/AsciiVideo.astro";
+import Corners from "../ui/Corners.astro";
+import Logo from "../ui/Logo.astro";
+import SectionIntro from "../ui/SectionIntro.astro";
+
+type Mark = "yes" | "partly" | "no";
+const icons = { yes: CheckGreen, partly: Warning, no: XCircle };
+// each label is followed by `lines` 22px spacer lines, which sets the row height (as in the original)
+const rows: Array<{ label: string; lines: number; cells: Array<[Mark, string]> }> = [
+  {
+    label: "Speed",
+    lines: 1,
+    cells: [
+      ["yes", "Agents deploy in minutes, not days."],
+      ["partly", "Days to weeks to build + stabilize."],
+      ["partly", "Instant output, but manual execution."],
+      ["partly", "Fast for simple tasks, slow for complex flows."],
+    ],
+  },
+  {
+    label: "Real Execution",
+    lines: 2,
+    cells: [
+      ["yes", "Agents take actions via tools and complete workflows."],
+      ["partly", "Possible, but requires engineering + maintenance."],
+      ["partly", "Gives suggestions, doesn’t execute end-to-end."],
+      ["no", "Executes steps, but lacks reasoning and flexibility."],
+    ],
+  },
+  {
+    label: "Reliability & Consistency",
+    lines: 1,
+    cells: [
+      ["yes", "Guardrails + retries + logs for stable runs."],
+      ["no", "Breaks often without constant tuning."],
+      ["no", "Output varies, hard to standardize."],
+      ["partly", "Stable, but breaks when inputs change."],
+    ],
+  },
+  {
+    label: "Memory & Context Handling",
+    lines: 1,
+    cells: [
+      ["yes", "Persistent memory for workflows and repeatable context."],
+      ["no", "Custom build required, complex to manage."],
+      ["no", "Limited memory, resets often."],
+      ["no", "No memory, only rule-based execution."],
+    ],
+  },
+  {
+    label: "Integrations & Tooling",
+    lines: 2,
+    cells: [
+      ["yes", "100+ integrations + API tools + custom actions."],
+      ["partly", "Unlimited, but you build everything."],
+      ["no", "Limited tool depth for real operations."],
+      ["partly", "Strong integrations, limited intelligence."],
+    ],
+  },
+  {
+    label: "Visibility & Control",
+    lines: 2,
+    cells: [
+      ["yes", "Execution logs, approvals, and monitoring."],
+      ["partly", "Full control, but high effort to maintain."],
+      ["no", "Low visibility, hard to audit actions."],
+      ["no", "Basic logs, limited decision transparency."],
+    ],
+  },
+];
+const ours = "edge relative flex w-[21%] shrink-0 flex-col justify-center bg-primary/5 py-2 pr-6 pl-5 [--edge-color:rgb(38_46_242/0.25)]";
+const theirs = "edge edge-r edge-b relative flex w-[21%] shrink-0 flex-col justify-center py-2 pl-5";
+---
+
+<section class="flex w-full flex-col overflow-clip">
+  <div class="flex w-full">
+    <div class="edge edge-x relative flex flex-1 flex-col gap-20 overflow-hidden px-5 py-15 md:px-10 md:py-20">
+      <SectionIntro
+        icon="/images/icons/why-choose-us.png"
+        label="Why Choose Us"
+        title="Our Edge in AI Automation"
+        lead="Designed to execute complex tasks with consistency, traceability, and minimality."
+        class="max-w-[415px]"
+      />
+      <div class="absolute -top-[99px] right-[13px] hidden size-[580px] lg:block">
+        <AsciiVideo src="/videos/why-choose-us.mp4" class="mask-fade-soft absolute inset-x-[-32px] top-0 z-1 h-[573px] text-primary" />
+      </div>
+      <Corners />
+    </div>
+  </div>
+
+  <div class="edge edge-l relative flex w-full overflow-clip">
+    <div class="flex-1 overflow-x-auto">
+      <div class="flex w-full min-w-[1440px] flex-col md:min-w-[1200px] lg:min-w-0">
+        <div class="flex rounded-xl backdrop-blur-[18px]">
+          <div class="edge edge-y relative min-h-[76px] w-[16%] shrink-0 p-5"></div>
+          <div class:list={[ours, "edge-all"]}><Logo /></div>
+          {
+            ["DIY Agent Stack", "Prompting", "Legacy Automation"].map((name) => (
+              <div class:list={[theirs, "edge-t pr-2"]}>
+                <p class="type-lead">{name}</p>
+              </div>
+            ))
+          }
+        </div>
+        {
+          rows.map((row, r) => (
+            <div class:list={["flex backdrop-blur-[18px]", r % 2 === 0 && "bg-white/4"]}>
+              <div class="edge edge-b relative w-[16%] shrink-0 p-5">
+                <p class="type-body">{row.label}</p>
+                {Array.from({ length: row.lines }, () => <span class="block h-[22px]" />)}
+              </div>
+              {row.cells.map(([mark, text], i) => {
+                const Icon = icons[mark];
+                return (
+                  <div class:list={[i === 0 ? ours : theirs, i === 0 ? "edge-x edge-b" : "pr-6"]}>
+                    <div class="flex items-start gap-2">
+                      <span class="flex shrink-0 pt-[3px]">
+                        <Icon class="size-4" />
+                      </span>
+                      <p class:list={["type-body", i === 0 && "text-ink"]}>{text}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

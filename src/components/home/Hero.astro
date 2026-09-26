@@ -1,0 +1,73 @@
+---
+import Chevron from "../../icons/chevron.svg";
+import AsciiVideo from "../ui/AsciiVideo.astro";
+import Button from "../ui/Button.astro";
+import Corners from "../ui/Corners.astro";
+import HeroAnimation from "./HeroAnimation.astro";
+
+const phrases = ["Run Your Business", "Automate Your Ops", "Scale Your Output"];
+const mobilePhrases = ["Run Businesses", "Automate Ops", "Scale Output"];
+---
+
+<section class="edge edge-b relative flex w-full flex-col overflow-clip lg:flex-row lg:items-center">
+  <div
+    class="edge edge-x edge-b relative flex flex-col items-center justify-center gap-6 overflow-hidden px-5 pt-32 pb-15 md:edge-b-0 md:px-10 md:pt-40 md:pb-20 lg:flex-1 lg:self-stretch lg:pt-[26px] lg:pb-0"
+  >
+    <div class="flex w-full flex-col items-start gap-6">
+      <a
+        href="https://framer.link/breeje83"
+        target="_blank"
+        rel="noopener"
+        class="group edge edge-all relative flex items-center gap-2 rounded-[52px] bg-page px-3 py-2 shadow-[inset_0_-3px_23px_-5px_rgb(255_255_255/0.25)]"
+      >
+        <span class="type-small whitespace-pre text-ink">Latest Release: Agent Core v3.1</span>
+        <span class="flex h-[11px] w-[7px] overflow-hidden">
+          <span class="flex shrink-0 -translate-x-[7px] transition-transform duration-500 group-hover:translate-x-0">
+            <Chevron class="h-[11px] w-[7px]" /><Chevron class="h-[11px] w-[7px]" />
+          </span>
+        </span>
+      </a>
+      <div class="flex w-full flex-col gap-4">
+        <h1 class="type-hero flex flex-col gap-1 text-ink md:gap-0">
+          <span class="max-md:hidden">Build AI Agents That</span>
+          <span class="md:hidden">AI Agents That</span>
+          <span
+            data-typewriter={JSON.stringify(phrases)}
+            data-typewriter-mobile={JSON.stringify(mobilePhrases)}
+            class="h-8 tracking-normal whitespace-pre text-primary md:h-11 lg:h-[52px] [&>*]:leading-none"
+          >
+            <span data-typewriter-text></span><span aria-hidden="true" class="ml-1 inline-block animate-[blink_0.5s_ease-in-out_infinite_alternate]"
+              >❚</span
+            ><span class="sr-only">{phrases[0]}</span>
+          </span>
+          <span>Fully on Autopilot</span>
+        </h1>
+        <p class="type-lead">
+          A reliable agent infrastructure that handles research, analysis, communication, and task execution with zero
+          supervision.
+        </p>
+      </div>
+      <Button
+        href="https://contra.com/payment-link/224G7IWU-ragnarok-ai-agent-framer-template"
+        label="Build Your Agent"
+        newTab
+        class="max-md:w-full"
+      />
+    </div>
+    <Corners class="top-20 md:top-[92px]" />
+  </div>
+
+  <div
+    class="edge edge-x relative flex h-[400px] flex-col items-center justify-center overflow-hidden pt-[26px] md:h-[600px] md:edge-t lg:h-[680px] lg:flex-1 lg:edge-t-0 lg:edge-l-0"
+  >
+    <AsciiVideo
+      src="/videos/hero.mp4"
+      class="mask-fade absolute top-1/2 left-1/2 z-1 aspect-[0.741093] w-full -translate-x-1/2 -translate-y-1/2"
+    />
+    <HeroAnimation />
+  </div>
+</section>
+
+<script>
+  import "../../scripts/typewriter.ts";
+</script>

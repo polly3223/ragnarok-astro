@@ -1,0 +1,89 @@
+---
+// "Trusted & Deployed by 300+" strip: each cell flips between two client logos in turn
+// (scripts/logos.ts). Each cell stacks [first, second, first again] so the loop can reset invisibly.
+const cells = [
+  [1, 2],
+  [3, 4],
+  [5, 6],
+  [7, 8],
+];
+---
+
+<section class="flex w-full flex-col overflow-hidden lg:flex-row lg:items-center">
+  <div
+    class="edge edge-x edge-b relative flex w-full items-center justify-center px-5 py-10 md:px-10 lg:w-[30%] lg:shrink-0"
+  >
+    <h2 class="type-lead w-full max-md:text-center">
+      Trusted & Deployed by <span class="text-primary">300+</span> Technical Teams Worldwide
+    </h2>
+  </div>
+  <div data-logos class="grid w-full grid-cols-2 lg:flex-1 lg:grid-cols-4 lg:self-stretch">
+    {
+      cells.map(([a, b], i) => (
+        <div
+          data-show="0"
+          class:list={["logo-cell edge edge-r edge-b relative h-[130px] overflow-clip", i % 2 === 0 && "max-lg:edge-l"]}
+        >
+          {[a, b, a].map((n) => (
+            <img src={`/images/logos/logoipsum-${n}.png`} alt="" class="absolute top-[37px] left-1/2 h-14 w-30" />
+          ))}
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .logo-cell img {
+    transition:
+      translate 0.5s cubic-bezier(0.33, 1, 0.68, 1),
+      opacity 0.5s,
+      filter 0.5s;
+  }
+  .logo-cell[data-reset] img {
+    transition: none;
+  }
+  /* offsets of [first, second, first again] for each visible index */
+  .logo-cell img:nth-child(1) {
+    --y: 0px;
+  }
+  .logo-cell img:nth-child(2) {
+    --y: 93px;
+  }
+  .logo-cell img:nth-child(3) {
+    --y: 149px;
+  }
+  .logo-cell[data-show="1"] img:nth-child(1) {
+    --y: -83px;
+  }
+  .logo-cell[data-show="1"] img:nth-child(2) {
+    --y: 0px;
+  }
+  .logo-cell[data-show="1"] img:nth-child(3) {
+    --y: 83px;
+  }
+  .logo-cell[data-show="2"] img:nth-child(1) {
+    --y: -129px;
+  }
+  .logo-cell[data-show="2"] img:nth-child(2) {
+    --y: -83px;
+  }
+  .logo-cell[data-show="2"] img:nth-child(3) {
+    --y: 0px;
+  }
+  .logo-cell img {
+    translate: -50% var(--y);
+    opacity: 0;
+    filter: blur(6px);
+  }
+  .logo-cell:is([data-show="0"]) img:nth-child(1),
+  .logo-cell[data-show="1"] img:nth-child(2),
+  .logo-cell[data-show="2"] img:nth-child(3) {
+    opacity: 1;
+    filter: none;
+  }
+</style>
+
+<script>
+  import "../../scripts/logos.ts";
+</script>

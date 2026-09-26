@@ -1,0 +1,15 @@
+---
+import ComparePlans from "../components/pricing/ComparePlans.astro";
+import Faq from "../components/sections/Faq.astro";
+import Pricing from "../components/sections/Pricing.astro";
+import Separator from "../components/ui/Separator.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout mobileApp>
+  <Pricing top />
+  <Separator class="edge-all" />
+  <ComparePlans />
+  <Separator />
+  <Faq />
+</Layout>

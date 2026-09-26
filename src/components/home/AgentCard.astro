@@ -1,0 +1,50 @@
+---
+// Workflow node card (Trigger / AI Agent / Action) used in the features and "how it works" graphics.
+interface Props {
+  tag: "Trigger" | "AI Agent" | "Action";
+  title: string;
+  body?: string;
+  chip?: { icon: string; label: string };
+  class?: string;
+}
+
+const { tag, title, body, chip, class: className } = Astro.props;
+const tags = {
+  Trigger: { icon: "/images/home/tag-trigger.png", color: "text-primary" },
+  "AI Agent": { icon: "/images/home/tag-agent.png", color: "text-[#00820f]" },
+  Action: { icon: "/images/home/tag-action.png", color: "text-[#aa26f2]" },
+};
+---
+
+<div
+  class:list={[
+    "flex flex-col items-center gap-[5px] overflow-hidden rounded-[14px] bg-white px-0.5 pt-2 pb-0.5 shadow-card backdrop-blur-[26px]",
+    className,
+  ]}
+>
+  <div class="flex w-full items-center justify-between px-3">
+    <span class="flex items-center gap-0.5">
+      <img src={tags[tag].icon} alt="" class="size-3" />
+      <span class:list={["text-[10px] leading-[1.2] font-medium", tags[tag].color]}>{tag}</span>
+    </span>
+    <img src="/images/home/dots.svg" alt="" class="size-3" />
+  </div>
+  <div class="edge edge-all relative flex w-full flex-col gap-[10px] rounded-[14px] bg-page p-3">
+    {
+      chip && (
+        <>
+          <span class="edge edge-all relative flex w-max items-center gap-[3px] rounded-full px-1.5 py-0.5">
+            <img src={chip.icon} alt="" class="size-2.5" />
+            <span class="text-[10px] leading-[1.2] font-medium text-ink">{chip.label}</span>
+          </span>
+          <span class="h-px w-full bg-line" />
+        </>
+      )
+    }
+    <div class="flex flex-col gap-1">
+      <p class="text-[13px] leading-[1.2] font-semibold text-ink">{title}</p>
+      {body && <p class="text-[10px] leading-[1.2] text-body">{body}</p>}
+      <slot />
+    </div>
+  </div>
+</div>

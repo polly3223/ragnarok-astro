@@ -1,0 +1,39 @@
+---
+// Blue "Build Your Agent >>>" ticker above the footer.
+import Separator from "../ui/Separator.astro";
+
+const item = [0, 1, 2];
+---
+
+<section class="mx-auto flex w-full max-w-[1920px] flex-col px-5 md:px-10">
+  <Separator />
+  <a
+    href="https://framer.link/breeje83"
+    target="_blank"
+    rel="noopener"
+    class="flex overflow-hidden bg-primary py-10"
+    aria-label="Build Your Agent"
+  >
+    <div data-marquee="50" data-reverse class="flex w-max gap-6">
+      {
+        [0, 1, 2, 3].map(() => (
+          <div class="flex shrink-0 items-center gap-6" aria-hidden="true">
+            <div class="flex">
+              {item.map(() => (
+                <svg viewBox="0 0 32 32" class="size-8" fill="#fff">
+                  <path d="M6 0h6v6H6zM6 26h6v6H6zM12 6h6v6h-6zM12 19h6v6h-6zM19 13h6v6h-6z" />
+                </svg>
+              ))}
+            </div>
+            <p class="type-h2 whitespace-pre text-white">Build Your Agent</p>
+          </div>
+        ))
+      }
+    </div>
+  </a>
+  <Separator />
+</section>
+
+<script>
+  import "../../scripts/marquee.ts";
+</script>

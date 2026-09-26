@@ -1,0 +1,17 @@
+---
+// Ragnarok AI mark + wordmark (navbar and comparison table).
+interface Props {
+  href?: string;
+  class?: string;
+}
+
+const { href, class: className } = Astro.props;
+const Tag = href ? "a" : "div";
+---
+
+<Tag href={href} class:list={["flex items-center gap-1.5", className]}>
+  <span class="flex size-7 items-center justify-center overflow-hidden rounded-lg bg-primary shadow-icon">
+    <img src="/images/brand/logo-mark.png" alt="" class="size-[17px]" />
+  </span>
+  <span class="font-grotesk text-lg leading-[1.2] font-bold text-ink md:text-xl lg:text-[22px]">Ragnarok AI</span>
+</Tag>

@@ -1,0 +1,42 @@
+---
+// Privacy Policy and Terms of Service: the template renders the same body on both pages.
+import AsciiVideo from "../../components/ui/AsciiVideo.astro";
+import Corners from "../../components/ui/Corners.astro";
+import Separator from "../../components/ui/Separator.astro";
+import Layout from "../../layouts/Layout.astro";
+import { Content, frontmatter } from "../../content/legal.md";
+
+export function getStaticPaths() {
+  return [
+    { params: { slug: "privacy-policy" }, props: { title: "Privacy Policy" } },
+    { params: { slug: "terms-of-service" }, props: { title: "Terms of Service" } },
+  ];
+}
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<Layout title={`${title} - My Framer Site`}>
+  <section class="flex w-full flex-col md:pt-20">
+    <div class="edge edge-x edge-b relative flex overflow-hidden px-5 pt-32 pb-15 md:px-10 md:py-20">
+      <div class="relative z-2 flex max-w-[721px] flex-col gap-6">
+        <h1 class="type-h2 text-ink">{title}</h1>
+        <p class="type-lead">{frontmatter.intro}</p>
+      </div>
+      <div class="absolute -top-3 right-0 hidden size-[336px] lg:block">
+        <AsciiVideo src="/videos/legal.mp4" class="absolute top-0 left-1/2 aspect-[1.127] w-[111.3%] -translate-x-1/2" />
+      </div>
+      <Corners />
+    </div>
+  </section>
+  <Separator />
+  <article class="edge edge-x edge-b relative flex w-full justify-center px-5 py-15 md:px-10 md:py-20">
+    <div class="article w-full max-w-[832px]">
+      <Content />
+    </div>
+  </article>
+</Layout>

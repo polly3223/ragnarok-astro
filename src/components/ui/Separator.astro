@@ -1,0 +1,17 @@
+---
+// 9px hatched strip between sections.
+interface Props {
+  class?: string;
+}
+
+const { class: className = "edge-x edge-b" } = Astro.props;
+---
+
+<div
+  aria-hidden="true"
+  class:list={[
+    "edge relative h-[9px] w-full shrink-0 bg-[url(/images/ui/hatch-separator.png)] bg-size-[12px_auto] bg-center",
+    className,
+  ]}
+>
+</div>

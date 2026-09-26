@@ -1,0 +1,32 @@
+---
+import { getCollection } from "astro:content";
+import BlogCard from "../../components/blog/BlogCard.astro";
+import AsciiVideo from "../../components/ui/AsciiVideo.astro";
+import Corners from "../../components/ui/Corners.astro";
+import SectionIntro from "../../components/ui/SectionIntro.astro";
+import Layout from "../../layouts/Layout.astro";
+
+const posts = (await getCollection("blog")).sort((a, b) => a.data.order - b.data.order);
+---
+
+<Layout>
+  <section class="flex w-full flex-col md:pt-20">
+    <div class="edge edge-x relative flex overflow-hidden px-5 pt-32 pb-20 md:px-10 md:py-20">
+      <SectionIntro
+        as="h1"
+        icon="/images/icons/blog.png"
+        label="Blogs"
+        title="Learn How Smart Teams Use Agents"
+        lead="Practical insights on AI agents, automation, and building workflows that run in production."
+        class="max-w-[500px]"
+      />
+      <div class="absolute -top-1.5 -right-8 hidden size-100 lg:block">
+        <AsciiVideo src="/videos/blog.mp4" class="absolute top-0 left-1/2 aspect-[1.121] w-[111%] -translate-x-1/2" />
+      </div>
+      <Corners />
+    </div>
+    <div class="edge edge-l relative grid w-full lg:grid-cols-3">
+      {posts.map((post) => <BlogCard post={post} />)}
+    </div>
+  </section>
+</Layout>

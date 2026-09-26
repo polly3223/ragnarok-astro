@@ -1,0 +1,31 @@
+---
+import AsciiVideo from "../components/ui/AsciiVideo.astro";
+import Button from "../components/ui/Button.astro";
+import SectionBadge from "../components/ui/SectionBadge.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <section class="edge edge-b relative flex w-full flex-col md:pt-20">
+    <div class="edge edge-x relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-5 pt-32 pb-15 md:p-10">
+      <AsciiVideo src="/videos/hero.mp4" class="absolute -top-5 left-1/2 hidden aspect-[1.12] w-full -translate-x-1/2 lg:block" />
+      <div
+        class="relative z-2 flex w-full max-w-[480px] flex-col items-center gap-4 bg-[radial-gradient(50%_50%,var(--color-page)_84%,#f5f5fa00_100%)] py-10 text-center"
+      >
+        <SectionBadge icon="/images/icons/not-found.png" label="Page Not Found" />
+        <h1 class="flex items-center justify-center gap-1 font-grotesk text-[128px] leading-none font-medium tracking-[-0.01em] text-ink md:gap-2 md:text-[160px] lg:gap-4 lg:text-[200px]">
+          <span>4</span>
+          <span class="flex w-25 justify-center" aria-hidden="true">
+            <span class="flex size-[120px] shrink-0 -rotate-[10.6deg] items-center justify-center rounded-[34px] bg-primary shadow-icon md:size-[132px] md:rounded-[38px] lg:size-[156px] lg:rounded-[45px]">
+              <img src="/images/brand/logo-mark.png" alt="" class="size-[59%]" />
+            </span>
+          </span>
+          <span>4</span>
+          <span class="sr-only">— page not found</span>
+        </h1>
+        <p class="type-lead">Sorry we couldn’t find the page you were looking for. It may have been moved, deleted or never existed.</p>
+        <Button href="/" label="Take me home" class="max-md:w-full" />
+      </div>
+    </div>
+  </section>
+</Layout>

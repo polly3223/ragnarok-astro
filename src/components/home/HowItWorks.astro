@@ -1,0 +1,312 @@
+---
+// Three auto-advancing steps (scripts/how-it-works.ts): text panels slide vertically, the
+// illustrations horizontally; the active panel fills with a 9s progress tint.
+import ArrowDown from "../../icons/arrow-down.svg";
+import CheckSmall from "../../icons/check-small.svg";
+import Retry from "../../icons/retry.svg";
+import TickSmall from "../../icons/tick-small.svg";
+import AsciiVideo from "../ui/AsciiVideo.astro";
+import Corners from "../ui/Corners.astro";
+import SectionIntro from "../ui/SectionIntro.astro";
+import AgentCard from "./AgentCard.astro";
+
+const steps = [
+  {
+    title: ["Describe the Task.", "Get a Clear Execution Plan."],
+    body: "Start with a simple instruction and the agent automatically converts it into a structured workflow — defining the objective, selecting the right inputs, and locking the output format before anything runs.",
+  },
+  {
+    title: ["Plug In Your Stack.", "Let Agents Run."],
+    body: "Connect the tools you already use and unlock real automation. Agents can read files, use structured data, coordinate schedules, and complete multi-step workflows across your systems with reliable execution.",
+  },
+  {
+    title: ["Deploy, Monitor, and Scale with Confidence."],
+    body: "Once your workflow is live, agents run tasks automatically with real-time status, execution history, and transparent reliability metrics — so you always know what’s running, what finished, and what needs attention.",
+  },
+];
+// Orbit rings: diameter, spin direction and the icon pairs [angle, radius, icons] placed on them.
+const rings = [
+  { reverse: true, sets: [[20, 178, "01", "02"], [120, 179, "03", "04"]] },
+  { reverse: false, sets: [[90, 129.5, "05", "06"], [160, 131, "07", "08"]] },
+  { reverse: true, sets: [[120, 89, "09", "10"]] },
+] as const;
+const runs = [
+  ["Run #128", "Retried", "2m ago"],
+  ["Run #127", "Completed", "1h ago"],
+  ["Run #126", "Completed", "Yesterday"],
+  ["Run #125", "Completed", "Yesterday"],
+];
+const cell = "flex w-[111px] items-center gap-1 px-2.5 text-[11px] leading-[1.2]";
+---
+
+<section data-hiw data-step="1" data-idle class="hiw flex w-full flex-col overflow-clip bg-page">
+  <div class="flex w-full">
+    <div class="edge edge-x relative flex flex-1 flex-col items-center gap-10 overflow-hidden px-5 pt-15 lg:gap-20 lg:px-10 lg:pt-20">
+      <SectionIntro
+        center
+        icon="/images/icons/how-it-works.png"
+        label="How it Works"
+        title="Launch Your AI Agent in minutes"
+        lead="Powerful automation, built without technical overhead for your team."
+        class="max-w-[415px]"
+      />
+      <div class="relative z-2 flex w-full justify-between lg:w-[71%]">
+        {
+          [1, 2, 3].map((n) => (
+            <button type="button" data-step-target={n} class="pointer flex cursor-pointer flex-col items-center">
+              <span class="edge edge-all relative bg-white px-4 py-2 type-label text-ink">Step {n}</span>
+              <span class="h-[85px] w-px bg-line" />
+            </button>
+          ))
+        }
+      </div>
+      <AsciiVideo src="/videos/how-it-works.mp4" class="absolute -top-[239px] -left-[240px] z-1 hidden size-[560px] lg:block" />
+      <AsciiVideo src="/videos/how-it-works.mp4" class="absolute -top-[239px] -right-[240px] z-1 hidden size-[560px] lg:block" />
+      <Corners />
+    </div>
+  </div>
+
+  <div class="edge edge-all relative flex w-full flex-col lg:flex-row">
+    <div class="relative h-[400px] w-full min-w-0 overflow-clip lg:flex-1">
+      <div class="left-track flex flex-col">
+        {
+          steps.map((step) => (
+            <div class="relative flex h-[400px] shrink-0 flex-col justify-between overflow-clip p-5 lg:p-10">
+              <h3 class="type-h3-lg relative z-3 max-w-[480px] text-ink">
+                {step.title.map((line, i) => (
+                  <>
+                    {i > 0 && <br />}
+                    {line}
+                  </>
+                ))}
+              </h3>
+              <p class="type-body relative z-3">{step.body}</p>
+              <span class="bar pointer-events-none absolute inset-y-0 left-0 bg-primary/10" />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="edge edge-t relative h-[400px] w-full min-w-0 overflow-clip lg:flex-1 lg:edge-t-0 lg:edge-l">
+      <div class="right-track flex h-full">
+        <div class="illustration s1 flex h-full w-full shrink-0 flex-col items-center justify-center gap-4">
+          <div class="s1-chip flex items-center gap-0.5 rounded-[50px] bg-white px-3.5 py-2 shadow-card backdrop-blur-[26px]">
+            <img src="/images/home/user.png" alt="" class="size-4" />
+            <span class="text-[10px] leading-[1.2] font-medium text-ink">Generate a weekly competitor summary</span>
+          </div>
+          <ArrowDown class="s1-arrow h-5 w-[9.23px]" />
+          <div class="s1-card">
+          <AgentCard
+            tag="AI Agent"
+            title="Workflow initiated"
+            chip={{ icon: "/images/home/workflow-builder.png", label: "Workflow builder" }}
+            class="w-[268px]"
+          >
+            <span class="flex flex-wrap gap-x-1.5 gap-y-1.5 pt-0.5">
+              {
+                ["Objective defined", "Inputs selected", "Output format set"].map((point) => (
+                  <span class="flex items-center gap-1 text-[10px] leading-[1.2] text-body">
+                    <TickSmall class="size-[9.4px]" />
+                    {point}
+                  </span>
+                ))
+              }
+            </span>
+          </AgentCard>
+          </div>
+        </div>
+
+        <div class="illustration s2 grid h-full w-full shrink-0 place-items-center">
+          <div class="orbit edge edge-all relative size-[360px] rounded-full">
+            {
+              [270, 180, 113].map((size) => (
+                <span class="edge edge-all absolute inset-0 m-auto rounded-full" style={`width: ${size}px; height: ${size}px`} />
+              ))
+            }
+            {
+              rings.map((ring) => (
+                <div class:list={["absolute inset-0 animate-[spin_30s_linear_infinite]", ring.reverse && "[animation-direction:reverse]"]}>
+                  {ring.sets.map(([angle, radius, ...icons]) =>
+                    icons.map((icon, i) => (
+                      <span
+                        class="absolute top-1/2 left-1/2 -m-3.5 size-7"
+                        style={`transform: rotate(${angle + 180 * i}deg) translateY(-${radius}px) rotate(-${angle + 180 * i}deg)`}
+                      >
+                        <span
+                          class:list={[
+                            "edge edge-all relative grid size-7 place-items-center rounded-full bg-white animate-[spin_30s_linear_infinite]",
+                            !ring.reverse && "[animation-direction:reverse]",
+                          ]}
+                        >
+                          <img src={`/images/orbit/${icon}.svg`} alt="" class="size-4" />
+                        </span>
+                      </span>
+                    )),
+                  )}
+                </div>
+              ))
+            }
+            <span class="absolute inset-0 m-auto grid size-[61px] place-items-center overflow-hidden rounded-full bg-primary shadow-icon">
+              <img src="/images/brand/logo-mark.png" alt="" class="size-9" />
+            </span>
+          </div>
+        </div>
+
+        <div class="illustration s3 flex h-full w-full shrink-0 items-center justify-center">
+          <div class="monitor flex w-[349px] flex-col items-center gap-[7.6px] overflow-hidden rounded-[19px] bg-white pt-[11.5px] shadow-card max-md:scale-70">
+            <div class="flex w-full items-center justify-between px-[18px]">
+              <p class="text-sm leading-[1.2] font-medium text-ink">Execution Monitor</p>
+              <span class="flex items-center gap-1 rounded-full bg-[#fe00001a] px-2 py-0.5">
+                <span class="pulse size-1 rounded-full bg-[red]"></span>
+                <span class="text-xs leading-[1.5] text-[red]">LIVE</span>
+              </span>
+            </div>
+            <span class="h-px w-full bg-line"></span>
+            <div class="flex w-full flex-col items-center gap-2.5">
+              <div class="flex w-[333px] flex-col">
+                <div class="flex h-[23px] font-medium text-ink">
+                  {["Run", "Status", "Time"].map((label) => <span class={cell}>{label}</span>)}
+                </div>
+                <div class="new-row flex overflow-hidden rounded-lg bg-body/5 text-ink/50">
+                  <span class={cell}>Run #129</span>
+                  <span class={cell}>
+                    <span class="relative size-2.5 overflow-hidden [mask:url(/images/home/loader-mask.svg)_alpha_no-repeat_center/cover]">
+                      <span class="absolute -inset-0.5 animate-spin rounded-[10%] bg-[conic-gradient(#fff_0deg,#242424_360deg)]"></span>
+                    </span>
+                    Running
+                  </span>
+                  <span class={cell}>Now</span>
+                </div>
+                {
+                  runs.map(([run, status, time], i) => (
+                    <div class:list={["flex h-[29px] rounded-lg text-ink/50", i % 2 ? "bg-body/5" : "bg-white"]}>
+                      <span class={cell}>{run}</span>
+                      <span class={cell}>
+                        {status === "Retried" ? <Retry class="size-2.5" /> : <CheckSmall class="size-2.5" />}
+                        {status}
+                      </span>
+                      <span class={cell}>{time}</span>
+                    </div>
+                  ))
+                }
+              </div>
+              <div class="flex w-full items-center justify-center gap-1 bg-[#05a2341a] p-2">
+                <span class="pulse size-1 rounded-full bg-[#1e8c2c]"></span>
+                <span class="font-geist text-xs leading-[1.5] text-[#1e8c2c]">Success rate: 99.8%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hiw {
+    --i: 0;
+    --ease: cubic-bezier(0.8, 0, 0.2, 1);
+  }
+  .hiw[data-step="2"] {
+    --i: 1;
+  }
+  .hiw[data-step="3"] {
+    --i: 2;
+  }
+  .left-track {
+    translate: 0 calc(var(--i) * -400px);
+    transition: translate 1s var(--ease);
+  }
+  .right-track {
+    translate: calc(var(--i) * -100%) 0;
+    transition: translate 1s var(--ease);
+  }
+  .pointer {
+    opacity: 0.4;
+    transition: opacity 0.4s;
+  }
+  .hiw[data-step="1"] .pointer:nth-child(1),
+  .hiw[data-step="2"] .pointer:nth-child(2),
+  .hiw[data-step="3"] .pointer:nth-child(3) {
+    opacity: 1;
+  }
+
+  .bar {
+    width: 0;
+  }
+  .bar.play {
+    animation: fill 9s linear forwards;
+  }
+  @keyframes fill {
+    to {
+      width: 100%;
+    }
+  }
+
+  /* Illustrations restart (class "play") each time their step becomes active */
+  .s1 > *,
+  .orbit,
+  .monitor {
+    opacity: 0;
+  }
+  .s1.play .s1-chip {
+    animation: enter 1s var(--ease) both;
+  }
+  .s1.play :is(.s1-arrow, .s1-card) {
+    animation: enter 1s var(--ease) 0.8s both;
+  }
+  .s2.play .orbit,
+  .s3.play .monitor {
+    animation: grow-in 1s var(--ease) both;
+  }
+  .s3.play .monitor {
+    animation-delay: 0.4s;
+  }
+  .new-row {
+    height: 0;
+    opacity: 0;
+    translate: 179px 0;
+  }
+  .s3.play .new-row {
+    animation: new-row 1s var(--ease) 1.2s both;
+  }
+  @keyframes enter {
+    from {
+      opacity: 0;
+      translate: 0 16px;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes grow-in {
+    from {
+      opacity: 0;
+      scale: 0.5;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes new-row {
+    to {
+      height: 29px;
+      opacity: 1;
+      translate: 0;
+    }
+  }
+  .pulse {
+    animation: pulse 2s linear infinite;
+  }
+  @keyframes pulse {
+    from {
+      opacity: 0;
+      scale: 0.5;
+    }
+  }
+</style>
+
+<script>
+  import "../../scripts/how-it-works.ts";
+</script>

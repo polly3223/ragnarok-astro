@@ -1,0 +1,22 @@
+---
+// "《 icon Label 》" eyebrow used above section headings.
+interface Props {
+  icon: string;
+  label: string;
+}
+
+const { icon, label } = Astro.props;
+const bracket = (right: boolean) =>
+  right
+    ? "M6.848 13.188 10.012 6.314 7.002 0H5.896L8.85 6.314 5.742 13.188ZM1.106 13.188 4.27 6.314 1.26 0H.154L3.108 6.314 0 13.188Z"
+    : "M3.164 13.188 0 6.314 3.01 0H4.116L1.162 6.314 4.27 13.188ZM8.906 13.188 5.742 6.314 8.752 0H9.858L6.904 6.314 10.012 13.188Z";
+---
+
+<div class="flex items-center gap-3">
+  <svg viewBox="0 0 10.012 13.188" class="h-[13px] w-2.5" aria-hidden="true"><path d={bracket(false)} fill="rgb(31 38 50 / 0.4)"></path></svg>
+  <div class="flex items-center gap-2">
+    <img src={icon} alt="" class="size-6" />
+    <p class="type-label whitespace-pre text-ink">{label}</p>
+  </div>
+  <svg viewBox="0 0 10.012 13.188" class="h-[13px] w-2.5" aria-hidden="true"><path d={bracket(true)} fill="rgb(31 38 50 / 0.4)"></path></svg>
+</div>

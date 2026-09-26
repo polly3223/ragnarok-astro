@@ -1,0 +1,91 @@
+---
+// Primary (dark) / secondary (light) button with the template's hover effects:
+// pixel-grid colour wipe, scrambled label and sliding pixel arrow (big size only).
+// Without `href` it renders a form submit button.
+interface Props {
+  href?: string;
+  label: string;
+  variant?: "primary" | "secondary";
+  size?: "big" | "small";
+  newTab?: boolean;
+  full?: boolean;
+  class?: string;
+}
+
+const { href, label, variant = "primary", size = "big", newTab = false, full = false, class: className } = Astro.props;
+const Tag = href ? "a" : "button";
+const primary = variant === "primary";
+const big = size === "big";
+const ease = "duration-600 ease-[cubic-bezier(0.44,0,0.56,1)]";
+---
+
+<Tag
+  href={href}
+  type={href ? undefined : "submit"}
+  target={newTab ? "_blank" : undefined}
+  rel={newTab ? "noopener" : undefined}
+  data-fx
+  class:list={[
+    "group relative flex cursor-pointer flex-col rounded-[5px]",
+    full ? "w-full" : "w-max",
+    primary ? "[--fx-noise:rgb(255_255_255/0.5)] [--fx-text:#fff]" : "[--fx-text:#1f1f32]",
+    className,
+  ]}
+>
+  <span
+    class:list={[
+      "relative flex flex-col items-center rounded-[5px]",
+      big ? "px-4 py-3.5" : "px-2.5 py-2",
+      primary ? "bg-ink" : big ? "bg-white" : "edge edge-all bg-page",
+    ]}
+  >
+    <span
+      data-fx-pixels
+      class:list={[
+        "absolute inset-0 hidden rounded-[4px] group-hover:block",
+        primary
+          ? "bg-primary [--fx-cover:var(--color-ink)]"
+          : big
+            ? "bg-page [--fx-cover:#fff]"
+            : "bg-white [--fx-cover:var(--color-page)]",
+      ]}
+    >
+    </span>
+    <span class="relative z-2 flex items-center gap-2">
+      <span
+        class:list={[
+          "relative flex leading-[1.4] tracking-[-0.01em]",
+          big ? "h-[25px] text-lg" : "h-[22px] text-base",
+          primary ? "text-white" : "text-ink",
+        ]}
+      >
+        <span data-fx-label class:list={["whitespace-pre transition-opacity group-hover:opacity-0", ease]}>{label}</span>
+      </span>
+      {
+        big && (
+          <span class="flex size-4 overflow-hidden">
+            <span class:list={["flex shrink-0 -translate-x-4 transition-transform group-hover:translate-x-0", ease]}>
+              {[0, 1].map(() => (
+                <img
+                  src={primary ? "/images/ui/arrow-pixel-light.png" : "/images/ui/arrow-pixel-dark.png"}
+                  alt=""
+                  class="size-4"
+                />
+              ))}
+            </span>
+          </span>
+        )
+      }
+    </span>
+  </span>
+  {
+    (primary || big) && (
+      <span
+        class:list={[
+          "pointer-events-none absolute inset-0 z-4 rounded-[5px] shadow-button",
+          !primary && "edge edge-all group-hover:edge-none",
+        ]}
+      />
+    )
+  }
+</Tag>

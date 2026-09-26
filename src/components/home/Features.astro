@@ -1,0 +1,221 @@
+---
+import OpenAi from "../../icons/openai.svg";
+import PixelSend from "../../icons/pixel-send.svg";
+import AsciiVideo from "../ui/AsciiVideo.astro";
+import Corners from "../ui/Corners.astro";
+import SectionIntro from "../ui/SectionIntro.astro";
+import AgentCard from "./AgentCard.astro";
+
+const tickers = [
+  ["01", "02", "03", "04", "05", "06"],
+  ["07", "08", "09", "10", "11", "12"],
+  ["13", "14", "15", "16", "17", "18"],
+  ["19", "20", "21", "22", "23", "24"],
+];
+const folders = [
+  [
+    { label: "Research", color: "text-[#aa26f2]", count: "10 Items", chip: "bg-[#f2e5ff]" },
+    { label: "Operations", color: "text-[#ca7c0e]", count: "8 Items", chip: "bg-[#fffce5]" },
+    { label: "Client Work", color: "text-[#f25c26]", count: "11 Items", chip: "bg-[#ffece5]" },
+    { label: "Finance", color: "text-[#0c9618]", count: "5 Items", chip: "bg-[#e5ffe9]" },
+  ],
+  [
+    { label: "Content", color: "text-lavender", count: "21 Items", chip: "bg-[#e5eaff]" },
+    { label: "Sales", color: "text-[#71880a]", count: "14 Items", chip: "bg-[#fbffe7]" },
+    { label: "Support", color: "text-[#20a684]", count: "4 Items", chip: "bg-[#e5fff7]" },
+    { label: "Product", color: "text-[#0c5696]", count: "9 Items", chip: "bg-[#e5f7ff]" },
+  ],
+];
+const quickOptions = [
+  { icon: "/images/home/file.svg", label: "Prepare a report" },
+  { icon: "/images/home/chart.svg", label: "Draft a client update" },
+  { icon: "/images/home/connection.svg", label: "Generate a workflow plan" },
+];
+const prompts = [
+  "Ask your agent what to automate…",
+  "Describe a workflow to run on autopilot…",
+  "Tell your agent what to handle next…",
+];
+const card = "edge relative flex w-full flex-col items-center justify-center overflow-hidden py-10 max-md:px-5 lg:w-auto lg:flex-1";
+const chip = "edge edge-all relative flex items-center gap-[5px] bg-white px-[10px] py-[2.5px] text-[15px] leading-[1.5] text-ink";
+---
+
+<section class="flex w-full flex-col overflow-clip">
+  <div class="flex w-full overflow-clip">
+    <div class="edge edge-x relative flex flex-1 flex-col items-center justify-center gap-6 overflow-hidden px-5 py-15 md:px-10 md:py-20">
+      <SectionIntro
+        center
+        icon="/images/icons/features.png"
+        label="Features"
+        title="Built for Real-World Automation"
+        lead="A stable, predictable agent system engineered for production environments."
+        class="max-w-[415px]"
+      />
+      <AsciiVideo src="/videos/features.mp4" class="mask-fade absolute -top-[29px] -right-[230px] hidden size-[460px] lg:block" />
+      <AsciiVideo
+        src="/videos/features.mp4"
+        class="mask-fade absolute -top-[29px] -left-[230px] hidden size-[460px] rotate-180 lg:block"
+      />
+      <Corners />
+    </div>
+  </div>
+
+  <div class="flex w-full flex-col">
+    <div class="flex flex-col lg:flex-row lg:items-center">
+      <div class:list={[card, "edge-all"]}>
+        <div class="flex w-full flex-col gap-6">
+          <div class="flex flex-col gap-3 md:px-10">
+            <h3 class="type-h3 text-ink">Smart Task Execution</h3>
+            <p class="type-body">
+              Agents break tasks into clear steps, validate reasoning and execute with predictable accuracy and faster.
+            </p>
+          </div>
+          <div data-reveal class="flex h-[400px] flex-col items-center justify-center gap-6">
+            {
+              [
+                { tag: "Trigger" as const, title: "Workflow initiated", body: "Triggers when a new event occurs in the connected system." },
+                {
+                  tag: "AI Agent" as const,
+                  title: "Context & Decision Engine",
+                  body: "Analyzes the incoming data, applies rules and context, and determines the correct action to take.",
+                  chip: { icon: "/images/home/openai.png", label: "Model: GPT 4.1" },
+                },
+                {
+                  tag: "Action" as const,
+                  title: "Execute Automated Update",
+                  body: "Performs the required action automatically and updates the system with the final output.",
+                },
+              ].map((node, i) => (
+                <div class="reveal-item relative" style={`--i: ${2 * i}`}>
+                  <AgentCard {...node} class="w-[249px]" />
+                  {i < 2 && (
+                    <span class="reveal-item absolute top-[calc(100%-5px)] left-1/2 flex h-[35px] w-2.5 -translate-x-1/2 flex-col items-center justify-between" style={`--i: ${2 * i + 1}`}>
+                      <span class="edge edge-all relative size-2.5 rounded-full bg-white shadow-card" />
+                      <span class="absolute top-[7px] h-[25px] w-px bg-line" />
+                      <span class="edge edge-all relative size-2.5 rounded-full bg-white shadow-card" />
+                    </span>
+                  )}
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class:list={[card, "edge-r edge-b edge-t max-md:edge-l max-md:edge-t-0"]}>
+        <div class="flex w-full flex-col gap-6">
+          <div class="flex flex-col gap-3 md:px-10">
+            <h3 class="type-h3 text-ink">Flexible Integrations</h3>
+            <p class="type-body">
+              Connect tools like Notion, Slack, CRMs, Google Workspace, or internal APIs very quickly in a single click.
+            </p>
+          </div>
+          <div data-appear class="flex w-full flex-col justify-center gap-6 md:h-[400px]">
+            {
+              tickers.map((icons, i) => (
+                <div class="flex w-full">
+                  <div data-marquee="20" data-reverse={i % 2 === 1 ? "" : undefined} class="flex w-max gap-6">
+                    {icons.map((n) => (
+                      <span class="grid size-12 shrink-0 place-items-center rounded-[10px] bg-white/80 shadow-card">
+                        <img src={`/images/tools/${n}.png`} alt="" class="size-[26px] object-contain" />
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col lg:flex-row">
+      <div class:list={[card, "edge-x edge-b justify-start lg:self-stretch"]}>
+        <div class="flex w-full flex-col gap-6">
+          <div class="flex flex-col gap-3 md:px-10">
+            <h3 class="type-h3 text-ink">Smart Organization Engine</h3>
+            <p class="type-body">
+              Keeps your workspace structured by sorting inputs into the right buckets automatically with high precision.
+            </p>
+          </div>
+          <div data-appear class="flex w-full flex-col justify-center gap-6 md:h-[400px] md:px-10">
+            {
+              folders.map((row) => (
+                <div class="flex justify-center gap-6">
+                  {row.map((folder, i) => (
+                    <div class:list={["relative h-[129px] w-[105px] shrink-0", i > 1 && "max-md:hidden"]}>
+                      <img src="/images/home/document.png" alt="" class="absolute -top-px -left-2 h-[165px] w-[121px] max-w-none" />
+                      <p class:list={["absolute top-2.5 left-3 text-xs leading-[1.2] font-medium", folder.color]}>{folder.label}</p>
+                      <img src="/images/brand/logo-mark.png" alt="" class="absolute top-1/2 left-1/2 size-12 -translate-1/2" />
+                      <span class:list={["absolute -right-4 bottom-4 rounded-full px-1.5 py-[1.5px] font-geist text-[10px] leading-[1.5] text-ink", folder.chip]}>
+                        {folder.count}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class:list={[card, "edge-r edge-b max-md:edge-l"]}>
+        <div class="flex w-full flex-col gap-6">
+          <div class="flex flex-col gap-3 md:px-10">
+            <h3 class="type-h3 text-ink">Instant Workflow Generation</h3>
+            <p class="type-body">
+              Describe the outcome, and the agent handles planning, execution, and delivery without manual steps.
+            </p>
+          </div>
+          <div data-appear class="relative flex h-[280px] w-full flex-col items-center justify-center gap-3 pt-5 md:h-[400px] md:pt-0">
+            <div class="absolute top-0 left-1/2 flex -translate-x-1/2 origin-top rounded-full bg-white/40 p-3.5 shadow-[0_0_0_1px_rgb(1_97_151/0.02)] max-md:scale-[0.757] md:-top-[5px]">
+              <div class="flex rounded-full bg-white/60 p-[18px] shadow-[0_1px_1px_0_rgb(0_61_118/0.04),0_6px_4px_0_rgb(0_83_118/0.02),0_0_0_1px_rgb(1_97_151/0.04)]">
+                <div class="grid size-[68px] place-items-center overflow-hidden rounded-full bg-primary shadow-icon">
+                  <img src="/images/brand/logo-mark.png" alt="" class="size-10" />
+                </div>
+              </div>
+            </div>
+            <div class="relative w-[400px] max-md:scale-75">
+              <div class="flex flex-col gap-[9px] overflow-hidden rounded-3xl bg-white px-1 pt-1 pb-3 shadow-[0_0_0_1.6px_rgb(1_97_151/0.04),0_51px_38.6px_-19.3px_rgb(0_75_118/0.06),0_17.7px_6.4px_0_rgb(0_82_118/0.01),0_9.6px_6.4px_0_rgb(0_82_118/0.02),0_4.8px_4.8px_0_rgb(0_61_118/0.03),0_1.6px_1.6px_0_rgb(0_61_118/0.04)] backdrop-blur-[42px]">
+                <div class="edge edge-all relative flex flex-col gap-3 overflow-hidden rounded-[22px] bg-page px-[18px] py-5">
+                  <div class="flex flex-col gap-[60px]">
+                    <div data-digital-typewriter={JSON.stringify(prompts)} class="h-5 text-base leading-none text-body/75">
+                      <p class="whitespace-pre">{prompts[0]}</p>
+                    </div>
+                    <div class="flex items-end justify-between">
+                      <span class:list={[chip, "rounded-full"]}><OpenAi class="size-[15px]" />GPT 5.0</span>
+                      <span class="flex items-center gap-2">
+                        <span class="edge edge-all relative grid size-7 place-items-center rounded-full bg-white">
+                          <img src="/images/home/folder-plus.svg" alt="" class="size-4" />
+                        </span>
+                        <span class="grid size-7 place-items-center rounded-full bg-primary shadow-button">
+                          <PixelSend class="size-3.5" />
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-wrap gap-3 px-[18px] py-1">
+                  {
+                    quickOptions.map((option) => (
+                      <span class:list={[chip, "rounded-md"]}>
+                        <img src={option.icon} alt="" class="size-4" />
+                        {option.label}
+                      </span>
+                    ))
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import "../../scripts/marquee.ts";
+  import "../../scripts/digital-typewriter.ts";
+  import "../../scripts/reveal.ts";
+</script>

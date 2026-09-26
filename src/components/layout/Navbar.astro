@@ -1,0 +1,87 @@
+---
+import Button from "../ui/Button.astro";
+import Logo from "../ui/Logo.astro";
+import TextLink from "../ui/TextLink.astro";
+
+const links = [
+  { href: "/about", label: "About" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/blog", label: "Blog" },
+  { href: "/sign-in", label: "Login" },
+];
+const slide = "transition-[translate,scale] duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]";
+---
+
+<header
+  data-navbar
+  class="group/nav fixed inset-x-0 top-0 z-10 mx-auto flex h-[68px] max-w-[1920px] justify-center px-5 md:h-20 md:px-10"
+>
+  <nav
+    class="edge edge-x edge-b relative flex h-[68px] w-full flex-col overflow-hidden bg-page px-5 py-3 transition-[translate,height,background-color] duration-700 ease-[cubic-bezier(0.33,1,0.68,1)] group-data-hidden/nav:-translate-y-20 group-data-open/nav:h-dvh group-data-open/nav:bg-white group-data-open/nav:duration-1000 group-data-open/nav:ease-[cubic-bezier(0.8,0,0.2,1)] md:h-20 md:flex-row md:items-center md:px-10"
+  >
+    <div class="hidden flex-1 items-center gap-2 md:flex">
+      <div class="w-40"><Logo href="/" /></div>
+      <div class="flex flex-1 items-center justify-end gap-1">
+        {links.map((link) => <TextLink variant="nav" {...link} />)}
+      </div>
+      <Button href="/sign-up" label="Sign Up" variant="secondary" size="small" />
+      <Button href="/contact" label="Contact" variant="secondary" size="small" />
+    </div>
+
+    <div class="flex flex-col gap-10 md:hidden">
+      <div class="flex h-11 items-center justify-between">
+        <Logo href="/" />
+        <div class="flex items-center gap-1.5">
+          <Button href="/contact" label="Contact" variant="secondary" size="small" />
+          <button
+            type="button"
+            data-navbar-toggle
+            aria-expanded="false"
+            aria-label="Toggle menu"
+            class="edge edge-all relative size-[38px] cursor-pointer rounded-[4px] bg-page"
+          >
+            {
+              ["top-3.5 group-data-open/nav:rotate-45", "top-[22px] group-data-open/nav:-rotate-45"].map((cls) => (
+                <span
+                  class:list={[
+                    "absolute left-[9px] h-0.5 w-5 rounded-[10px] bg-ink transition-[top,rotate] duration-500 group-data-open/nav:top-[18px]",
+                    cls,
+                  ]}
+                />
+              ))
+            }
+          </button>
+        </div>
+      </div>
+      <div class="flex flex-col gap-5">
+        {
+          links.map((link, i) => (
+            <>
+              <a
+                href={link.href}
+                style={`transition-delay: ${0.05 * (i + 1)}s`}
+                class:list={[
+                  "w-max -translate-x-[130px] text-[32px] leading-none font-medium text-ink group-data-open/nav:translate-x-0",
+                  slide,
+                ]}
+              >
+                {link.label}
+              </a>
+              <span
+                style={`transition-delay: ${0.05 * (i + 1)}s`}
+                class:list={["h-px w-full origin-left scale-x-0 bg-line group-data-open/nav:scale-x-100", slide]}
+              />
+            </>
+          ))
+        }
+      </div>
+      <div class:list={["-translate-x-[130px] group-data-open/nav:translate-x-0", slide]} style="transition-delay: 0.25s">
+        <Button href="/sign-up" label="Sign Up" variant="secondary" />
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  import "../../scripts/navbar.ts";
+</script>

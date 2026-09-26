@@ -1,0 +1,48 @@
+---
+import Button from "../components/ui/Button.astro";
+import Corners from "../components/ui/Corners.astro";
+import FormField from "../components/ui/FormField.astro";
+import SectionBadge from "../components/ui/SectionBadge.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <section class="edge edge-b relative flex w-full flex-col md:pt-20 lg:flex-row">
+    <div class="edge edge-x edge-b relative flex px-5 pt-32 pb-10 md:p-10 lg:w-1/2 lg:edge-b-0">
+      <div class="flex w-full flex-col justify-between gap-5 md:gap-10">
+        <div class="flex max-w-[480px] flex-col gap-4">
+          <SectionBadge icon="/images/icons/contact.png" label="Contact Us" />
+          <h1 class="type-hero text-ink">Let’s Build Your AI Agent Together</h1>
+          <p class="type-lead">
+            Tell us what you’re trying to automate and we’ll guide you to the right setup. From first agent to production workflows
+            for your team we’ve got you.
+          </p>
+        </div>
+        <div class="edge edge-all relative flex flex-col gap-5 rounded-lg bg-white p-5 md:flex-row md:items-center md:gap-2">
+          <div class="flex flex-1 flex-col gap-2">
+            <h3 class="font-grotesk text-xl leading-[1.2] font-medium tracking-[-0.04em] text-ink">We’re Hiring</h3>
+            <p class="type-lead">Build the next-gen agent stack.</p>
+          </div>
+          <Button href="/careers" label="Careers" variant="secondary" class="max-md:w-full" />
+        </div>
+      </div>
+      <Corners />
+    </div>
+    <div class="edge edge-r relative flex justify-center px-5 py-10 max-lg:edge-l md:p-10 lg:w-1/2">
+      <form data-demo-form class="edge edge-all relative flex w-full flex-col gap-5 rounded-lg bg-white px-5 py-5 md:py-8">
+        <FormField label="Name" name="Name" placeholder="Jane Smith" required autocomplete="name" />
+        <div class="flex flex-col gap-5 md:flex-row">
+          <FormField label="Email" name="Email" type="email" placeholder="jane@framer.com" required autocomplete="email" />
+          <FormField label="Company" name="Company" placeholder="ABC Pvt. Ltd." required autocomplete="organization" />
+        </div>
+        <FormField label="Monthly budget" name="Monthly budget" type="select" placeholder="Select…" options={["$1,000", "$2,000", "$10,000"]} required />
+        <FormField label="What do you want to automate?" name="Message" type="textarea" placeholder="Describe" />
+        <Button label="Submit" full class="rounded-[10px]" />
+      </form>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import "../scripts/demo-form.ts";
+</script>

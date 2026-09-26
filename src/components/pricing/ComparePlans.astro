@@ -1,0 +1,119 @@
+---
+// "Compare Plans" feature table (/pricing): sticky plan header on desktop, horizontal scroll below.
+import CrossMark from "../../icons/cross-mark.svg";
+import CrossRing from "../../icons/cross-ring.svg";
+import TickPrimary from "../../icons/tick-primary.svg";
+import AsciiVideo from "../ui/AsciiVideo.astro";
+import Button from "../ui/Button.astro";
+import Corners from "../ui/Corners.astro";
+import SectionIntro from "../ui/SectionIntro.astro";
+import { plans } from "../../data/plans";
+
+// Cell values: text, or true / false for the included / not-included marks.
+type Row = [label: string, starter: string | boolean, pro: string | boolean, enterprise: string | boolean];
+const categories: Array<{ name: string; rows: Row[] }> = [
+  {
+    name: "Basics",
+    rows: [
+      ["Number of Agents", "1", "Up to 5", "Unlimited"],
+      ["Monthly Executions", "Up to 1,000", "Up to 50,000", "Unlimited"],
+      ["Integrations", "Up to 50", "Up to 100", "100+"],
+      ["Support", "Community", "Priority", "Dedicated"],
+      ["Team Seats", "1", "Up to 5", "Unlimited"],
+    ],
+  },
+  {
+    name: "Features",
+    rows: [
+      ["Workflow Builder", true, true, true],
+      ["Triggers & Scheduling", false, true, true],
+      ["Memory System", "Session", "Persistent", "Org-wide"],
+      ["Multi-Step Automation", false, "Included", "Included"],
+      ["Execution Logs", "Basic", "Advanced", "Advanced + Audit"],
+    ],
+  },
+  {
+    name: "Security & Team Control",
+    rows: [
+      ["Audit Logs", true, true, true],
+      ["Roles & Permissions", false, "Basic", "Advanced"],
+      ["SSO / SAML", false, true, true],
+      ["Private Deployment", false, false, true],
+      ["Custom SLAs", false, false, true],
+    ],
+  },
+];
+const cell = "edge edge-r edge-b relative flex w-[200px] shrink-0 flex-col justify-center md:w-[300px] lg:w-1/4";
+---
+
+<section class="flex w-full flex-col overflow-clip">
+  <div class="edge edge-x relative flex overflow-hidden px-5 py-20 md:px-10">
+    <SectionIntro
+      icon="/images/icons/compare-plans.png"
+      label="Compare Plans"
+      title="See What You Get"
+      lead="Compare limits, features, and controls to choose the right plan."
+    />
+    <div class="absolute -top-[22px] right-0 hidden size-[336px] lg:block">
+      <AsciiVideo src="/videos/compare-plans.mp4" class="absolute top-0 left-1/2 aspect-[1.129] w-[111.3%] -translate-x-1/2" />
+    </div>
+    <Corners />
+  </div>
+
+  <div class="edge edge-x relative flex w-full lg:edge-r-0">
+    <div class="w-full overflow-x-auto lg:overflow-visible">
+      <div class="edge edge-l relative flex w-max flex-col lg:w-full">
+        <div class="flex lg:sticky lg:top-0 lg:z-3">
+          <div class:list={[cell, "edge-t h-32 bg-page"]}></div>
+          {
+            plans.map((plan) => (
+              <div class:list={[cell, "edge-t gap-4 bg-page px-5 py-2"]}>
+                <div class="flex items-center gap-3">
+                  <h3 class="flex-1 font-grotesk text-xl leading-[1.2] font-medium tracking-[-0.04em] text-ink">{plan.name}</h3>
+                  {plan.popular && <span class="rounded bg-primary/10 px-1 py-0.5 text-sm leading-[1.4] text-primary">Most Popular</span>}
+                </div>
+                <Button
+                  href="https://framer.link/breeje83"
+                  label="Get Started"
+                  variant={plan.popular ? "primary" : "secondary"}
+                  newTab
+                  full
+                />
+              </div>
+            ))
+          }
+        </div>
+        {
+          categories.map(({ name, rows }) => (
+            <>
+              <div class="edge edge-r edge-b relative bg-body/5 p-5">
+                <p class="text-base leading-[1.4] font-semibold tracking-[-0.01em] text-body">{name}</p>
+              </div>
+              {rows.map(([label, ...values]) => (
+                <div class="flex">
+                  <div class:list={[cell, "p-5"]}>
+                    <p class="text-base leading-[1.4] tracking-[-0.01em] text-ink">{label}</p>
+                  </div>
+                  {values.map((value) => (
+                    <div class:list={[cell, "items-center px-5 py-2 text-center"]}>
+                      {value === true ? (
+                        <TickPrimary class="size-3.5" role="img" aria-label="Included" />
+                      ) : value === false ? (
+                        <span class="relative size-4 opacity-50" role="img" aria-label="Not included">
+                          <CrossRing class="absolute top-0.5 left-0.5 size-[13px] overflow-visible" />
+                          <CrossMark class="absolute top-1.5 left-1.5 size-[5px] overflow-visible" />
+                        </span>
+                      ) : (
+                        <p class="text-base leading-[1.4] tracking-[-0.01em] text-body">{value}</p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

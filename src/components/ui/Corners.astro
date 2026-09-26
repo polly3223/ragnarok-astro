@@ -1,0 +1,18 @@
+---
+// Four spinning "nut bolt" markers inset 12px from the corners of the parent.
+import Bolt from "../../icons/bolt.svg";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div aria-hidden="true" class:list={["pointer-events-none absolute inset-3 z-1 grid grid-cols-2 content-between", className]}>
+  {
+    ["", "justify-self-end", "", "justify-self-end"].map((cls) => (
+      <Bolt class:list={["size-[15px] animate-spin-5", cls]} />
+    ))
+  }
+</div>

@@ -1,0 +1,654 @@
+[
+  {
+    "path": "apple-touch-icon.png",
+    "source": "https://framerusercontent.com/images/eYDyDPh7ciIOrXKUKCvAsPcrmw.png"
+  },
+  {
+    "path": "favicon.png",
+    "source": "https://framerusercontent.com/images/5ruQbsyedbhjn6xfp8xJxrr1cE.png"
+  },
+  {
+    "path": "fonts/geist-400.woff2",
+    "source": "https://fonts.gstatic.com/s/geist/v5/gyBhhwUxId8gMGYQMKR3pzfaWI_RnOMImpna.woff2"
+  },
+  {
+    "path": "fonts/inter-400.woff2",
+    "source": "https://framerusercontent.com/assets/GrgcKwrN6d3Uz8EwcLHZxwEfC4.woff2"
+  },
+  {
+    "path": "fonts/inter-500.woff2",
+    "source": "https://framerusercontent.com/assets/UjlFhCnUjxhNfep4oYBPqnEssyo.woff2"
+  },
+  {
+    "path": "fonts/inter-600.woff2",
+    "source": "https://framerusercontent.com/assets/yDtI2UI8XcEg1W2je9XPN3Noo.woff2"
+  },
+  {
+    "path": "fonts/inter-700.woff2",
+    "source": "https://framerusercontent.com/assets/syRNPWzAMIrcJ3wIlPIP43KjQs.woff2"
+  },
+  {
+    "path": "fonts/onest-400.woff2",
+    "source": "https://fonts.gstatic.com/s/onest/v9/gNMZW3F-SZuj7zOT0IfSjTS16cPh9R-ptRtN.woff2"
+  },
+  {
+    "path": "fonts/space-grotesk-400.woff2",
+    "source": "https://framerusercontent.com/third-party-assets/fontshare/wf/6DG6HUOGHOB35UGAANBDBVY77OCFNQOA/MX56D7EXTFRCL3EZPNM332VF6D5TDENT/2MGP255ZY2RSFHKW6LNN6W6BWQGC2LUO.woff2"
+  },
+  {
+    "path": "fonts/space-grotesk-500.woff2",
+    "source": "https://framerusercontent.com/third-party-assets/fontshare/wf/LQZILVYBY2UXBMF3ZGAZKDS2P53HB2G5/XB4XS4AXY7LIGYBYPO7RTAIGNPOSSI7K/V2SN6OQGC3Z2CCFHLOEJRJKQXUTOKEBX.woff2"
+  },
+  {
+    "path": "fonts/space-grotesk-600.woff2",
+    "source": "https://framerusercontent.com/third-party-assets/fontshare/wf/FOIKAJFLDFRPJ452NHBMMHCNDL4FUUBB/5AC3Y6FTG5H7IECKNZVIR7XI64O5YW5S/OB3CIWMGQGGYEGXRXPOVBXWAH4INE6T4.woff2"
+  },
+  {
+    "path": "fonts/space-grotesk-700.woff2",
+    "source": "https://framerusercontent.com/third-party-assets/fontshare/wf/GFEQC7SZ2XMFHB2INR6RE24JKHO5JNTS/R2HDHPNP7PMXFG5AIIV7PF3KFELSLGKJ/COAKOVM7H37QQIPEFBZNVR5EL4GEPLQU.woff2"
+  },
+  {
+    "path": "images/about/inside-1.webp",
+    "source": "https://framerusercontent.com/images/LYUWpFesWbJARsVhCF4sQhgL26o.webp?scale-down-to=1024"
+  },
+  {
+    "path": "images/about/inside-2.png",
+    "source": "https://framerusercontent.com/images/GzcdEUYt1EGjGrzcHyv9eVNM8w.png?scale-down-to=1024"
+  },
+  {
+    "path": "images/about/inside-3.jpg",
+    "source": "https://framerusercontent.com/images/dufXDZ0wXL7uw81bWRouAFSYCRE.png?scale-down-to=1024"
+  },
+  {
+    "path": "images/about/inside-4.webp",
+    "source": "https://framerusercontent.com/images/bSUwgTkUc4r8BUop9SC5SjLuABg.webp?scale-down-to=1024"
+  },
+  {
+    "path": "images/about/inside-5.webp",
+    "source": "https://framerusercontent.com/images/30UrD6KeLhZtEPj2fA6txF1m4.webp?scale-down-to=1024"
+  },
+  {
+    "path": "images/about/motto-2.png",
+    "source": "https://framerusercontent.com/images/Sd1dofbT6DCTKunXlu735Mp78f4.png"
+  },
+  {
+    "path": "images/about/motto-3.png",
+    "source": "https://framerusercontent.com/images/bqzdgWOBNdieLb1WV6ppTQg9lr0.png"
+  },
+  {
+    "path": "images/about/motto-4.png",
+    "source": "https://framerusercontent.com/images/51YXfgm7cqwLa1jm5WZ4DRsvNbA.png"
+  },
+  {
+    "path": "images/about/team.png",
+    "source": "https://framerusercontent.com/images/dyX45fGGHEaBBU5Uub8kG1k6bM.png?scale-down-to=2048"
+  },
+  {
+    "path": "images/auth/avatar.png",
+    "source": "https://framerusercontent.com/images/wlrRktVuPuDwIia3zyQBLdQiQ.png"
+  },
+  {
+    "path": "images/auth/github.svg",
+    "source": "https://framerusercontent.com/images/oX5ODSoG9A7DMBpCVCA0V6H1708.svg"
+  },
+  {
+    "path": "images/blog/ai-agents-vs-chatbots.jpg",
+    "source": "https://framerusercontent.com/images/T3mof8ktTpc7dyNQwa2T2bUuaT4.jpg?scale-down-to=2048"
+  },
+  {
+    "path": "images/blog/author-james-cooper.jpg",
+    "source": "https://framerusercontent.com/images/I8p4TLdsGoFKj18JUDiws23xMhc.jpg?scale-down-to=512"
+  },
+  {
+    "path": "images/blog/automate-team-grunt-works.jpg",
+    "source": "https://framerusercontent.com/images/VzaSIWVs3IJI5eG9BcnYqjanbs.jpg?scale-down-to=2048"
+  },
+  {
+    "path": "images/blog/lead-research-outreach.jpg",
+    "source": "https://framerusercontent.com/images/f2XyQOvZJF1RwpvRNPIE3xYwU7c.jpg?scale-down-to=2048"
+  },
+  {
+    "path": "images/blog/lean-workplace-playbook.jpg",
+    "source": "https://framerusercontent.com/images/QLD5RRSPDCq3QdgFWa9EdXo7Y4k.jpg?scale-down-to=2048"
+  },
+  {
+    "path": "images/blog/multi-step-methods.jpg",
+    "source": "https://framerusercontent.com/images/avtgK9IRRRUv195ITPfka0BqY.jpg?scale-down-to=2048"
+  },
+  {
+    "path": "images/blog/securing-ai-automation.jpg",
+    "source": "https://framerusercontent.com/images/nRM0bmemJsx3VNesMkK6iGXGW8.jpg?scale-down-to=2048"
+  },
+  {
+    "path": "images/brand/logo-mark.png",
+    "source": "https://framerusercontent.com/images/xchri0NFdz1Zi6O7TbfPB2QtOQ.png"
+  },
+  {
+    "path": "images/brand/preloader-logo.png",
+    "source": "https://framerusercontent.com/images/pTJaaEN10iewBlIeYSgj5aLVM.png"
+  },
+  {
+    "path": "images/careers/photo-1.webp",
+    "source": "https://framerusercontent.com/images/tVgqrLxvm1pgiiC37AbCBSRNr7Y.webp?scale-down-to=1024"
+  },
+  {
+    "path": "images/careers/photo-2.webp",
+    "source": "https://framerusercontent.com/images/E1VhEVrSkYcOY0yjIJUqoqU.webp?scale-down-to=1024"
+  },
+  {
+    "path": "images/careers/photo-3.webp",
+    "source": "https://framerusercontent.com/images/0MmKMrmNj9WbMjxrKjXPNtaIrU.webp?scale-down-to=1024"
+  },
+  {
+    "path": "images/careers/photo-4.webp",
+    "source": "https://framerusercontent.com/images/GqmHoNn5JSm8etCdMwrEad2VDs.webp?scale-down-to=1024"
+  },
+  {
+    "path": "images/careers/photo-5.webp",
+    "source": "https://framerusercontent.com/images/5xPbxunU6JFaucTgZFAmwBlUVuU.webp?scale-down-to=1024"
+  },
+  {
+    "path": "images/cta/phone.png",
+    "source": "https://framerusercontent.com/images/H1bwOKb9yWYgXuxODt2GmOXqrM.png?scale-down-to=1024"
+  },
+  {
+    "path": "images/cta/qr.png",
+    "source": "https://framerusercontent.com/images/JroKgwUZLPL4vK3IMVH6XAzLw.png?scale-down-to=512"
+  },
+  {
+    "path": "images/home/chart.svg",
+    "source": "https://framerusercontent.com/images/tECiL6APZPm2JT8vCLZ4NFHprc0.svg"
+  },
+  {
+    "path": "images/home/connection.svg",
+    "source": "https://framerusercontent.com/images/Vicaw211ac1QLyXOaYnaPphN3s.svg"
+  },
+  {
+    "path": "images/home/document.png",
+    "source": "https://framerusercontent.com/images/DYE9nRiyUihay93yPrfLiMPUA1I.png"
+  },
+  {
+    "path": "images/home/dots.svg",
+    "source": "https://framerusercontent.com/images/hjES5mvwe5ponXu54QCKtnKJTlY.svg"
+  },
+  {
+    "path": "images/home/file.svg",
+    "source": "https://framerusercontent.com/images/THslClfwcJ2UWQQ1GmvJTdfv0l4.svg"
+  },
+  {
+    "path": "images/home/folder-plus.svg",
+    "source": "https://framerusercontent.com/images/cWpGkGXXYdzZRxn1JjrvTsF1EXQ.svg"
+  },
+  {
+    "path": "images/home/loader-mask.svg",
+    "source": "https://framerusercontent.com/images/n0oSwgp5EebGPAAdbYNhdLaUS7A.svg"
+  },
+  {
+    "path": "images/home/openai.png",
+    "source": "https://framerusercontent.com/images/E13l3EyK32itXb85cJyzZTnUmg.png"
+  },
+  {
+    "path": "images/home/tag-action.png",
+    "source": "https://framerusercontent.com/images/edk40bzLrfj8EUWbZwyd4Q9Xv0.png"
+  },
+  {
+    "path": "images/home/tag-agent.png",
+    "source": "https://framerusercontent.com/images/MRXr3UKrU6VuGpf2rPUZ8LnQ5w.png"
+  },
+  {
+    "path": "images/home/tag-trigger.png",
+    "source": "https://framerusercontent.com/images/rHjjsXlapUY5gaTsE4T34Raxp0k.png"
+  },
+  {
+    "path": "images/home/user.png",
+    "source": "https://framerusercontent.com/images/sSXkTE1uW6VMfaKUY3bV8eDA1E.png"
+  },
+  {
+    "path": "images/home/workflow-builder.png",
+    "source": "https://framerusercontent.com/images/EoZ33UIFWztuc7C3KzQv2DuTnU.png"
+  },
+  {
+    "path": "images/icons/about.png",
+    "source": "https://framerusercontent.com/images/obGHT6HjOZrvdkPo6IhBllMwn5M.png"
+  },
+  {
+    "path": "images/icons/blog.png",
+    "source": "https://framerusercontent.com/images/CwQyMiNSUPxNjD18N58XQORqw.png"
+  },
+  {
+    "path": "images/icons/careers.png",
+    "source": "https://framerusercontent.com/images/ZPcqBNZq2l8FJN09tfiKjnSSKe8.png"
+  },
+  {
+    "path": "images/icons/compare-plans.png",
+    "source": "https://framerusercontent.com/images/llR6NBYLZ9uwcRVHofHTEx03cc.png"
+  },
+  {
+    "path": "images/icons/contact.png",
+    "source": "https://framerusercontent.com/images/53G7s3yLu2xlTeKx5q0IzBCoQ.png"
+  },
+  {
+    "path": "images/icons/faq.png",
+    "source": "https://framerusercontent.com/images/9HFATKC5IYoVECIPMQrGrWXJLXo.png"
+  },
+  {
+    "path": "images/icons/features.png",
+    "source": "https://framerusercontent.com/images/F8CD3RW0O7oJncBcSJd9PPkly3I.png"
+  },
+  {
+    "path": "images/icons/how-it-works.png",
+    "source": "https://framerusercontent.com/images/dcfBui9CDDWeqmSUPknWGsYUnaA.png"
+  },
+  {
+    "path": "images/icons/inside-team.png",
+    "source": "https://framerusercontent.com/images/jwcQuxqgIqF7xoIcznW9U6rLOa8.png"
+  },
+  {
+    "path": "images/icons/job-openings.png",
+    "source": "https://framerusercontent.com/images/s7mmklgQxLbrM9szmIRp6n4YI.png"
+  },
+  {
+    "path": "images/icons/mobile-app.png",
+    "source": "https://framerusercontent.com/images/cMajoZiOI6OduRwUN6xzzxLO0rY.png"
+  },
+  {
+    "path": "images/icons/not-found.png",
+    "source": "https://framerusercontent.com/images/eqsLe4hWnW9SWcvyiwHJ3IlpZ3o.png"
+  },
+  {
+    "path": "images/icons/perks.png",
+    "source": "https://framerusercontent.com/images/L5QS5CPDmpaYrASbUh9gAopqDw.png"
+  },
+  {
+    "path": "images/icons/pricing.png",
+    "source": "https://framerusercontent.com/images/HHLTWnttTWAl2DevbMvdp6vsLY.png"
+  },
+  {
+    "path": "images/icons/team.png",
+    "source": "https://framerusercontent.com/images/9eMFBRLCRCUyvHcKvoLzPWP9CHQ.png"
+  },
+  {
+    "path": "images/icons/testimonials.png",
+    "source": "https://framerusercontent.com/images/6FrmfpTMV3B9GSpBaUj3tiUoPs.png"
+  },
+  {
+    "path": "images/icons/values.png",
+    "source": "https://framerusercontent.com/images/FMZeSJWJzogIfaeg9YN6fDCp7dE.png"
+  },
+  {
+    "path": "images/icons/why-choose-us.png",
+    "source": "https://framerusercontent.com/images/Ip7sQH6ScPCPhRE0B2OmQPbVjEE.png"
+  },
+  {
+    "path": "images/logos/logoipsum-1.png",
+    "source": "https://framerusercontent.com/images/2XtnM8fWwTOKpiZF9uUBE96nWg.png"
+  },
+  {
+    "path": "images/logos/logoipsum-2.png",
+    "source": "https://framerusercontent.com/images/4JfKlMBFKmCn9upubKMu414j4.png"
+  },
+  {
+    "path": "images/logos/logoipsum-3.png",
+    "source": "https://framerusercontent.com/images/Or3KQOdrtbtlyz35h2m0JZmOnoo.png"
+  },
+  {
+    "path": "images/logos/logoipsum-4.png",
+    "source": "https://framerusercontent.com/images/gDIvsaqVlE2qVBxGCHDLZloWRBo.png"
+  },
+  {
+    "path": "images/logos/logoipsum-5.png",
+    "source": "https://framerusercontent.com/images/jb84lMyeledeR8vKs6AV3EXgvo.png"
+  },
+  {
+    "path": "images/logos/logoipsum-6.png",
+    "source": "https://framerusercontent.com/images/n0BNMwE1ewuhFnwEHRrwsgoDKw.png"
+  },
+  {
+    "path": "images/logos/logoipsum-7.png",
+    "source": "https://framerusercontent.com/images/NctLgJ48rakXSQyCXyy28caR4U.png"
+  },
+  {
+    "path": "images/logos/logoipsum-8.png",
+    "source": "https://framerusercontent.com/images/yhQoHCNm4Tdrnz9gr2yFuTl4Hs.png"
+  },
+  {
+    "path": "images/og.png",
+    "source": "https://framerusercontent.com/images/KzI1oxnE5E8qtFa1shQD6sieGRA.png"
+  },
+  {
+    "path": "images/orbit/01.svg",
+    "source": "https://framerusercontent.com/images/5Nd3MQltLPt25doCfmZLK8ZlHk.svg"
+  },
+  {
+    "path": "images/orbit/02.svg",
+    "source": "https://framerusercontent.com/images/TlxWWrcQWGADILDZgllRQmTDio.svg"
+  },
+  {
+    "path": "images/orbit/03.svg",
+    "source": "https://framerusercontent.com/images/ZrP7syrvSDRjmdr6JLpXGfr7Lw.svg"
+  },
+  {
+    "path": "images/orbit/04.svg",
+    "source": "https://framerusercontent.com/images/c7AkAW0ZRIj2PsWPpa4vjNJfhQ.svg"
+  },
+  {
+    "path": "images/orbit/05.svg",
+    "source": "https://framerusercontent.com/images/6OSKQisLLoEUyroBd09ZUhXBwhU.svg"
+  },
+  {
+    "path": "images/orbit/06.svg",
+    "source": "https://framerusercontent.com/images/9lMEsGxDfBbcMOEAjTZi2cOD0.svg"
+  },
+  {
+    "path": "images/orbit/07.svg",
+    "source": "https://framerusercontent.com/images/C2roX9vObtxgtsKkFQSgTSjeA.svg"
+  },
+  {
+    "path": "images/orbit/08.svg",
+    "source": "https://framerusercontent.com/images/U0iaXTdF6pjCO7WmR9bX79p12Q.svg"
+  },
+  {
+    "path": "images/orbit/09.svg",
+    "source": "https://framerusercontent.com/images/hqUNQ1e0GDACewHXpu3nyMEA2o.svg"
+  },
+  {
+    "path": "images/orbit/10.svg",
+    "source": "https://framerusercontent.com/images/grJwvaUlcKRl3W5EZENAZqD0k.svg"
+  },
+  {
+    "path": "images/perks/learning-budget.png",
+    "source": "https://framerusercontent.com/images/pZnk0GIk5NRJ0B21Xc2kObbGZjc.png"
+  },
+  {
+    "path": "images/perks/remote-friendly.png",
+    "source": "https://framerusercontent.com/images/pbhHuYtrUkFswr5tSWImEmUg.png"
+  },
+  {
+    "path": "images/perks/team-work.png",
+    "source": "https://framerusercontent.com/images/QFHqrRPpoip32WUnOmSVUfFg.png"
+  },
+  {
+    "path": "images/perks/wellness-support.png",
+    "source": "https://framerusercontent.com/images/YDchLBzXQ1wn3W9x5M8g29x1its.png"
+  },
+  {
+    "path": "images/social/instagram.png",
+    "source": "https://framerusercontent.com/images/RMTIQDxbqP6XBPm05olZWE5dLv0.png"
+  },
+  {
+    "path": "images/social/linkedin-box.png",
+    "source": "https://framerusercontent.com/images/Xjom800ASTpbHc7sU6JQYfM4EM.png"
+  },
+  {
+    "path": "images/social/linkedin.png",
+    "source": "https://framerusercontent.com/images/mMwrjrBh7nnn3CpAuPMtVFI8.png"
+  },
+  {
+    "path": "images/social/x.png",
+    "source": "https://framerusercontent.com/images/fznakxVtW7aev5Njxbd4rQHyog.png"
+  },
+  {
+    "path": "images/team/chloe-morgan.png",
+    "source": "https://framerusercontent.com/images/8o0fcDpowGoj40MKrRXq8XwF10.png?scale-down-to=1024"
+  },
+  {
+    "path": "images/team/daniel-wright.png",
+    "source": "https://framerusercontent.com/images/Xz63mQxGVJAhiSVQphlJn4lQE.png?scale-down-to=1024"
+  },
+  {
+    "path": "images/team/james-cooper.png",
+    "source": "https://framerusercontent.com/images/U4LAKQSEgIsKFQA9esENQD6m2Y.png?scale-down-to=1024"
+  },
+  {
+    "path": "images/team/maya-reynolds.png",
+    "source": "https://framerusercontent.com/images/a18ccLTmxH2Hkxm4wEhcxNkqAFA.png?scale-down-to=1024"
+  },
+  {
+    "path": "images/team/olivia-carter.png",
+    "source": "https://framerusercontent.com/images/bArerpLAHy3kZCOJXnXzeRPnEc.png?scale-down-to=1024"
+  },
+  {
+    "path": "images/team/shubham-biswas.png",
+    "source": "https://framerusercontent.com/images/gJRAMw6EJyokXMIQAHw56LnjxJw.png?scale-down-to=1024"
+  },
+  {
+    "path": "images/testimonials/claire-johnson.jpg",
+    "source": "https://framerusercontent.com/images/9nhBOGgJ9q8pD0lOyeXqNCCc.png"
+  },
+  {
+    "path": "images/testimonials/ethan-walker.jpg",
+    "source": "https://framerusercontent.com/images/tLOf4GdWqvZtRVSfeLUq2pXZk0U.png"
+  },
+  {
+    "path": "images/testimonials/horizon.png",
+    "source": "https://framerusercontent.com/images/3OuHSgLzkxtkKYXwBA0aznqAA.png"
+  },
+  {
+    "path": "images/testimonials/northwind.png",
+    "source": "https://framerusercontent.com/images/Q5tWODvFSEf3d5i8A7b0AU8MNkU.png"
+  },
+  {
+    "path": "images/testimonials/sophia-bennett.jpg",
+    "source": "https://framerusercontent.com/images/beMYN8V1bROUEEP6v3SPtTqekM.png"
+  },
+  {
+    "path": "images/testimonials/vertex.png",
+    "source": "https://framerusercontent.com/images/ykTdeOodPQwr111pIem59t8eZrw.png"
+  },
+  {
+    "path": "images/tools/01.png",
+    "source": "https://framerusercontent.com/images/KdNjkAUKeAvDe2L01TTRKniAs.png"
+  },
+  {
+    "path": "images/tools/02.png",
+    "source": "https://framerusercontent.com/images/xgR9gQ8ZU7ANAATU0ZfEGsfuis.png"
+  },
+  {
+    "path": "images/tools/03.png",
+    "source": "https://framerusercontent.com/images/dnbNgTl6DiB1FzoL2X9Put2UmQ.png"
+  },
+  {
+    "path": "images/tools/04.png",
+    "source": "https://framerusercontent.com/images/aXhpKeBUVSXeK0aXUx3boGPHNOY.png"
+  },
+  {
+    "path": "images/tools/05.png",
+    "source": "https://framerusercontent.com/images/nVh2V5Gyi6m6prSyfJiV0ZStkP0.png"
+  },
+  {
+    "path": "images/tools/06.png",
+    "source": "https://framerusercontent.com/images/rBIBmirHiz9tWo9hACpmDNoNRg.png"
+  },
+  {
+    "path": "images/tools/07.png",
+    "source": "https://framerusercontent.com/images/bWok8sBAi1b2jnS0jc3NVo112Qg.png"
+  },
+  {
+    "path": "images/tools/08.png",
+    "source": "https://framerusercontent.com/images/199FDHLOseFQHhvjaCndHYPs4.png"
+  },
+  {
+    "path": "images/tools/09.png",
+    "source": "https://framerusercontent.com/images/Dxc4SnoWp0ZPybWIfBmeGx3Bs.png"
+  },
+  {
+    "path": "images/tools/10.png",
+    "source": "https://framerusercontent.com/images/0LZ3SgjDtOUjDVRWronI7jDiR0.png"
+  },
+  {
+    "path": "images/tools/11.png",
+    "source": "https://framerusercontent.com/images/lKkdGrFLTiGZ50OtYSFyxjSq7C0.png"
+  },
+  {
+    "path": "images/tools/12.png",
+    "source": "https://framerusercontent.com/images/hpgI4xgVamzp7G5zGFNmkeJWg.png"
+  },
+  {
+    "path": "images/tools/13.png",
+    "source": "https://framerusercontent.com/images/joiipTYqOaBZiyRNTK1FmzvBO3w.png"
+  },
+  {
+    "path": "images/tools/14.png",
+    "source": "https://framerusercontent.com/images/lNkkBu0TrGiCprZUrRcTwNBzc1s.png"
+  },
+  {
+    "path": "images/tools/15.png",
+    "source": "https://framerusercontent.com/images/c7vLBWGmY1pKbM7zKT3oz7vQ.png"
+  },
+  {
+    "path": "images/tools/16.png",
+    "source": "https://framerusercontent.com/images/HZQAjNGTNAOht8a69kUOthD3YM.png"
+  },
+  {
+    "path": "images/tools/17.png",
+    "source": "https://framerusercontent.com/images/FWb6NnAi4YzaUFcy6uoCcWrhaXU.png"
+  },
+  {
+    "path": "images/tools/18.png",
+    "source": "https://framerusercontent.com/images/VsCzBoLplUL6K14VWCAjfiW5M.png"
+  },
+  {
+    "path": "images/tools/19.png",
+    "source": "https://framerusercontent.com/images/n1S0nVYPlHR9w8Y6tQwaAKMjxc.png"
+  },
+  {
+    "path": "images/tools/20.png",
+    "source": "https://framerusercontent.com/images/sCtdYwi6CaNJxAjR6rHsJ6lFqo.png"
+  },
+  {
+    "path": "images/tools/21.png",
+    "source": "https://framerusercontent.com/images/Cjy89vt59qLjSrQYHkHj6cXnOA.png"
+  },
+  {
+    "path": "images/tools/22.png",
+    "source": "https://framerusercontent.com/images/NjV2JuiIKcKV8n8ezcjr9d9WUI.png"
+  },
+  {
+    "path": "images/tools/23.png",
+    "source": "https://framerusercontent.com/images/hJeSd21sWU0yIBuif3JMY4wQQ.png"
+  },
+  {
+    "path": "images/tools/24.png",
+    "source": "https://framerusercontent.com/images/dVI3upI9rO3VdnjcElJFD7HDJg.png"
+  },
+  {
+    "path": "images/ui/arrow-pixel-dark.png",
+    "source": "https://framerusercontent.com/images/sPVyoOSpU59QuCDTlf2MR15bP4.png"
+  },
+  {
+    "path": "images/ui/arrow-pixel-light.png",
+    "source": "https://framerusercontent.com/images/avkHMq9J8i2O1ps1HPZogbNEI.png"
+  },
+  {
+    "path": "images/ui/hatch-separator.png",
+    "source": "https://framerusercontent.com/images/wURmpQkpYR8XCt0I9EjJ9JdhYo.png"
+  },
+  {
+    "path": "images/ui/hatch-side.png",
+    "source": "https://framerusercontent.com/images/ndp9dShGVCuQ7ZT44dNTd3eNxc.png"
+  },
+  {
+    "path": "images/values/accountability.png",
+    "source": "https://framerusercontent.com/images/MAkQ0ysGU5bvKARA7BL2Ne9ack.png"
+  },
+  {
+    "path": "images/values/adaptability.png",
+    "source": "https://framerusercontent.com/images/5vSE5knxjPd94yUGWZqFdF8Jg.png"
+  },
+  {
+    "path": "images/values/impact.png",
+    "source": "https://framerusercontent.com/images/JZywFqEUum7KR187nyuH45Jf2A.png"
+  },
+  {
+    "path": "images/values/precision.png",
+    "source": "https://framerusercontent.com/images/NIu9c6dMMZIVCSJJHM2GfAbfnU.png"
+  },
+  {
+    "path": "images/values/security.png",
+    "source": "https://framerusercontent.com/images/SYQ9rcn02VrtwHMIaZXYRN04ubQ.png"
+  },
+  {
+    "path": "images/values/simplicity.png",
+    "source": "https://framerusercontent.com/images/ScPAt6z6tXqhl4M44xjonsOOSI.png"
+  },
+  {
+    "path": "images/values/speed.png",
+    "source": "https://framerusercontent.com/images/0xUZTlfnlGMUlhec5pht8NV7A.png"
+  },
+  {
+    "path": "images/values/trust.png",
+    "source": "https://framerusercontent.com/images/H6leCIlvd120rMiiI8mD7xfMHFc.png"
+  },
+  {
+    "path": "videos/about-hero.mp4",
+    "source": "https://framerusercontent.com/assets/V0aQhAlvNyOwV7ipH9Ds4lyMJ3A.mp4"
+  },
+  {
+    "path": "videos/about-inside-team.mp4",
+    "source": "https://framerusercontent.com/assets/4aSsfx3T4ZoMWLRn9N1Sc8ELpjA.mp4"
+  },
+  {
+    "path": "videos/about-team.mp4",
+    "source": "https://framerusercontent.com/assets/nyjOKiuDWHN5cXsBezKbnvOkbz8.mp4"
+  },
+  {
+    "path": "videos/about-values.mp4",
+    "source": "https://framerusercontent.com/assets/6Hl1LY2sXnGi6GcSU0PpBgtnKA.mp4"
+  },
+  {
+    "path": "videos/blog.mp4",
+    "source": "https://framerusercontent.com/assets/F1lDOYKlSXPhiQEptZi41x3Cg.mp4"
+  },
+  {
+    "path": "videos/careers-hero.mp4",
+    "source": "https://framerusercontent.com/assets/juV8sK0O814JEXKYLQ1n6rAwWJI.mp4"
+  },
+  {
+    "path": "videos/careers-jobs.mp4",
+    "source": "https://framerusercontent.com/assets/EVxfJLlDnAGgclNf2r1BdfrM.mp4"
+  },
+  {
+    "path": "videos/careers-perks.mp4",
+    "source": "https://framerusercontent.com/assets/wvoDq2wtZzPSakYHQeadHGHE9hg.mp4"
+  },
+  {
+    "path": "videos/compare-plans.mp4",
+    "source": "https://framerusercontent.com/assets/urxmK6LBjaMIt7NlsP378X7e4.mp4"
+  },
+  {
+    "path": "videos/cta.mp4",
+    "source": "https://framerusercontent.com/assets/KVPXXtdp8uc2kcVU0A8cvMXuHY0.mp4"
+  },
+  {
+    "path": "videos/faq.mp4",
+    "source": "https://framerusercontent.com/assets/nWfmwpvg3A79HuUQqMCGeBEwQ0.mp4"
+  },
+  {
+    "path": "videos/features.mp4",
+    "source": "https://framerusercontent.com/assets/vuDnBiey1iHFlAGGI5YkZH6wWQ.mp4"
+  },
+  {
+    "path": "videos/hero.mp4",
+    "source": "https://framerusercontent.com/assets/dXt3wBtMwbPDdTadazSyzwJtWxY.mp4"
+  },
+  {
+    "path": "videos/how-it-works.mp4",
+    "source": "https://framerusercontent.com/assets/nzQTCd395Jc5Xxy1twe6FA9k6XY.mp4"
+  },
+  {
+    "path": "videos/legal.mp4",
+    "source": "https://framerusercontent.com/assets/424mCaf1OgCVRkZiDImHipwbKc.mp4"
+  },
+  {
+    "path": "videos/pricing.mp4",
+    "source": "https://framerusercontent.com/assets/6MNtLcYDVksGsIac3Chc7IOD3RQ.mp4"
+  },
+  {
+    "path": "videos/testimonials.mp4",
+    "source": "https://framerusercontent.com/assets/hpWEJjCIadrIZswlHnCXVODmrY.mp4"
+  },
+  {
+    "path": "videos/why-choose-us.mp4",
+    "source": "https://framerusercontent.com/assets/L0SSob1VLFsT6IJApXoTSKjPlE.mp4"
+  }
+]

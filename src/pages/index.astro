@@ -1,0 +1,30 @@
+---
+import Comparison from "../components/home/Comparison.astro";
+import Features from "../components/home/Features.astro";
+import Hero from "../components/home/Hero.astro";
+import HowItWorks from "../components/home/HowItWorks.astro";
+import Logos from "../components/home/Logos.astro";
+import Testimonials from "../components/home/Testimonials.astro";
+import Layout from "../layouts/Layout.astro";
+import Faq from "../components/sections/Faq.astro";
+import Pricing from "../components/sections/Pricing.astro";
+import Separator from "../components/ui/Separator.astro";
+---
+
+<Layout mobileApp preloader>
+  <Hero />
+  <Separator />
+  <Logos />
+  <Separator />
+  <Features />
+  <Separator />
+  <HowItWorks />
+  <Separator />
+  <Comparison />
+  <Separator />
+  <Pricing />
+  <Separator class="edge-all" />
+  <Testimonials />
+  <Separator />
+  <Faq />
+</Layout>

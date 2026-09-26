@@ -1,0 +1,10 @@
+---
+// Fixed hatched gutters on both sides of the viewport.
+const gutter =
+  "edge edge-y relative h-screen w-5 bg-[url(/images/ui/hatch-side.png)] bg-size-[38.5px_auto] bg-repeat md:w-10";
+---
+
+<div aria-hidden="true" class="pointer-events-none fixed inset-x-0 top-0 z-1 mx-auto flex max-w-[1920px] justify-between">
+  <div class:list={[gutter, "edge-l"]}></div>
+  <div class:list={[gutter, "edge-r"]}></div>
+</div>

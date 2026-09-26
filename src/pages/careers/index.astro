@@ -1,0 +1,98 @@
+---
+import { getCollection } from "astro:content";
+import JobMeta from "../../components/careers/JobMeta.astro";
+import AsciiVideo from "../../components/ui/AsciiVideo.astro";
+import Button from "../../components/ui/Button.astro";
+import Corners from "../../components/ui/Corners.astro";
+import IconCard from "../../components/ui/IconCard.astro";
+import PhotoTicker from "../../components/ui/PhotoTicker.astro";
+import SectionIntro from "../../components/ui/SectionIntro.astro";
+import Separator from "../../components/ui/Separator.astro";
+import Layout from "../../layouts/Layout.astro";
+
+const jobs = (await getCollection("jobs")).sort((a, b) => a.data.order - b.data.order);
+const photos = [1, 2, 3, 4, 5].map((n) => `/images/careers/photo-${n}.webp`);
+const perks: Array<[icon: string, title: string, text: string]> = [
+  ["/images/perks/remote-friendly.png", "Remote-Friendly", "Work from anywhere with flexible hours."],
+  ["/images/values/trust.png", "High Ownership", "Take projects end-to-end with real impact."],
+  ["/images/perks/wellness-support.png", "Wellness Support", "Health support and wellbeing benefits for long-term balance."],
+  ["/images/values/simplicity.png", "Modern Stack", "Tools that help you move fast, ship faster, and stay productive."],
+  ["/images/perks/learning-budget.png", "Learning Budget", "Courses, books, and training covered to keep you leveling up."],
+  ["/images/perks/team-work.png", "Team Work", "Collaborative culture with high standards."],
+];
+const ascii = "absolute top-0 left-1/2 aspect-[1.127] w-[111.3%] -translate-x-1/2";
+const square = "absolute top-0 left-1/2 aspect-square w-[98.7%] -translate-x-1/2";
+---
+
+<Layout>
+  <section class="flex w-full flex-col md:pt-20">
+    <div class="edge edge-x relative flex overflow-hidden px-5 pt-32 pb-15 md:px-10 md:py-20">
+      <SectionIntro
+        as="h1"
+        icon="/images/icons/careers.png"
+        label="Careers"
+        title="Build the Future of AI Agents with us"
+        lead="We’re hiring professionals who care about execution, not hype. Join Ragnarok AI and ship agent systems used in real workflows for real companies."
+        class="max-w-[650px]"
+      />
+      <div class="absolute top-14 right-0 hidden size-[336px] lg:block">
+        <AsciiVideo src="/videos/careers-hero.mp4" class={ascii} />
+      </div>
+      <Corners />
+    </div>
+    <PhotoTicker photos={photos} />
+  </section>
+
+  <section class="flex w-full flex-col">
+    <div class="edge edge-x relative flex overflow-hidden px-5 py-15 md:px-10 md:py-20">
+      <SectionIntro
+        icon="/images/icons/perks.png"
+        label="Perks"
+        title="Why Join Ragnarok AI"
+        lead="We optimize for high focus, high trust, and high velocity."
+        class="max-w-[500px]"
+      />
+      <div class="absolute top-[5px] right-[18px] hidden size-[300px] lg:block">
+        <AsciiVideo src="/videos/careers-perks.mp4" class={square} />
+      </div>
+      <Corners />
+    </div>
+    <div class="grid w-full lg:grid-cols-3">
+      {
+        perks.map(([icon, title, text], i) => (
+          <IconCard icon={icon} title={title} text={text} class:list={["edge-t edge-x md:edge-r-0", i % 3 === 1 && "md:edge-r lg:edge-r-0"]} />
+        ))
+      }
+    </div>
+  </section>
+  <Separator class="edge-all" />
+
+  <section class="flex w-full flex-col">
+    <div class="edge edge-x relative flex overflow-hidden px-5 py-15 md:px-10 md:py-20">
+      <SectionIntro
+        icon="/images/icons/job-openings.png"
+        label="Job Openings"
+        title="Open Positions"
+        lead="We’re hiring across engineering, product, and go-to-market."
+        class="max-w-[800px]"
+      />
+      <div class="absolute -top-[22px] right-0 hidden size-[336px] lg:block">
+        <AsciiVideo src="/videos/careers-jobs.mp4" class={square} />
+      </div>
+      <Corners />
+    </div>
+    <div class="grid w-full lg:grid-cols-2">
+      {
+        jobs.map(({ id, data }) => (
+          <div class="edge edge-t edge-l relative flex flex-col gap-5 p-5 md:p-10">
+            <div class="flex flex-col gap-2">
+              <h3 class="type-h3 text-ink">{data.title}</h3>
+              <JobMeta items={[data.location, data.type, data.salary]} />
+            </div>
+            <Button href={`/careers/${id}`} label="View Details" variant="secondary" />
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</Layout>

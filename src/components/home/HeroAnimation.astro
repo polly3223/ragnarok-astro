@@ -1,0 +1,247 @@
+---
+// Hero "agent run" loop: prompt pill → send button → Ragnarok hub → four steps run in turn →
+// "report generated" card. scripts/hero-animation.ts advances data-state with the original timings;
+// each state below only sets custom properties, every change eases over 1s like the Framer variants.
+import CheckSolid from "../../icons/check-solid.svg";
+import PixelSend from "../../icons/pixel-send.svg";
+
+const words = "Generate a weekly competitor summary".split(" ");
+const steps = [
+  { label: "Research sources", class: "top-[232px] left-[23px]" },
+  { label: "Analyze findings", class: "top-[125px] left-1/2 -translate-x-1/2" },
+  { label: "Generate report", class: "top-[232px] left-[339px]" },
+  { label: "Deliver output", class: "top-[339px] left-1/2 -translate-x-1/2" },
+];
+---
+
+<div class="relative z-4 size-[500px] shrink-0 max-md:scale-65">
+  <div data-hero-stage data-state="0" class="stage relative size-full overflow-clip">
+    <span class="line absolute top-[139px] left-[250px] h-[213px] w-px bg-line"></span>
+    <span class="line absolute top-[250px] left-[144px] h-px w-[213px] bg-line"></span>
+
+    {
+      steps.map((step) => (
+        <div data-step="off" class:list={["step absolute z-1", step.class]}>
+          <p class="pill flex h-9 items-center rounded-[30px] px-3 text-sm leading-none font-semibold tracking-[-0.03em] whitespace-pre text-white">
+            {step.label}
+          </p>
+          <span class="badge absolute -top-2 right-0 grid size-[22px] place-items-center rounded-full bg-primary">
+            <span class="ring relative size-[18px] rounded-full border-2 border-white/10 bg-primary">
+              <span class="spinner absolute -inset-0.5 rounded-full border-2 border-white" />
+            </span>
+            <CheckSolid class="tick absolute size-4" />
+          </span>
+        </div>
+      ))
+    }
+
+    <div class="hub absolute top-1/2 left-1/2 z-2 overflow-hidden rounded-[320px] bg-white">
+      <p class="prompt absolute top-1/2 left-4 font-grotesk text-sm leading-[1.2] font-medium whitespace-pre text-ink">
+        {
+          words.map((word, i) => (
+            <>
+              {i > 0 && " "}
+              <span class="word inline-block" style={`--i: ${i}`}>
+                {word}
+              </span>
+            </>
+          ))
+        }
+      </p>
+      <div class="icons absolute top-2 right-2 flex flex-col gap-3">
+        <span class="icon grid place-items-center rounded-full bg-primary shadow-icon">
+          <PixelSend class="w-1/2" />
+        </span>
+        <span class="icon grid place-items-center rounded-full bg-primary shadow-icon">
+          <img src="/images/brand/logo-mark.png" alt="" class="w-[59%]" />
+        </span>
+      </div>
+    </div>
+
+    <div class="report absolute top-[100px] left-[127.5px] h-[300px] w-[245px]">
+      <img src="/images/home/document.png" alt="" class="absolute -top-px -left-[18px] h-[384px] w-[281px] max-w-none" />
+      <p class="absolute top-4 left-5 text-[11px] leading-[1.2] font-medium text-ink">REPORT GENERATED</p>
+      <span class="absolute top-[42px] left-1.5 h-px w-[222px] bg-[#e9edf8]"></span>
+      <div class="absolute top-[54px] left-5 flex items-center gap-2.5">
+        <span class="grid size-10 place-items-center rounded-[11px] bg-[red] shadow-icon">
+          <span class="font-grotesk text-sm leading-[1.2] font-medium text-white">PDF</span>
+        </span>
+        <span class="flex flex-col gap-1.5">
+          <span class="font-grotesk text-[13px] leading-[1.2] font-medium text-ink">Execution Summary</span>
+          <span class="report-line h-[5px] w-[63px]"></span>
+        </span>
+      </div>
+      <div class="absolute top-[106px] left-1/2 flex -translate-x-1/2 flex-col gap-1.5">
+        {Array.from({ length: 13 }, () => <span class="report-line h-2 w-[206px]" />)}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .stage {
+    /* state 0 ("stop") and 15 (reset): hidden half-size prompt pill */
+    --hub-w: 334px;
+    --hub-h: 44px;
+    --hub-scale: 0.5;
+    --hub-opacity: 0;
+    --prompt-opacity: 1;
+    --prompt-y: 0px;
+    --icon: 28px;
+    --icon-shift: 0;
+    --steps: 0;
+    --report-scale: 0.5;
+    --report-opacity: 0;
+  }
+  .stage:is([data-state="1"], [data-state="2"], [data-state="3"]) {
+    --hub-scale: 1;
+    --hub-opacity: 1;
+  }
+  .stage:is([data-state="4"], [data-state="5"]) {
+    --hub-w: 44px;
+    --hub-scale: 1;
+    --hub-opacity: 1;
+    --prompt-opacity: 0;
+    --prompt-y: -8px;
+  }
+  .stage[data-state="5"] {
+    --icon-shift: 1;
+  }
+  .stage:is(
+      [data-state="6"],
+      [data-state="7"],
+      [data-state="8"],
+      [data-state="9"],
+      [data-state="10"],
+      [data-state="11"],
+      [data-state="12"],
+      [data-state="13"],
+      [data-state="14"]
+    ) {
+    --hub-w: 82px;
+    --hub-h: 82px;
+    --hub-scale: 1;
+    --hub-opacity: 1;
+    --prompt-opacity: 0;
+    --prompt-y: -8px;
+    --icon: 66px;
+    --icon-shift: 1;
+  }
+  .stage:is([data-state="7"], [data-state="8"], [data-state="9"], [data-state="10"], [data-state="11"]) {
+    --steps: 1;
+  }
+  .stage:is([data-state="12"], [data-state="13"], [data-state="14"]) {
+    --hub-opacity: 0;
+  }
+  .stage[data-state="13"] {
+    --report-scale: 1;
+    --report-opacity: 1;
+  }
+  .stage[data-state="14"] {
+    --report-scale: 1;
+  }
+
+  .stage * {
+    transition-duration: 1s;
+    transition-timing-function: cubic-bezier(0.8, 0, 0.2, 1);
+  }
+  .hub {
+    width: var(--hub-w);
+    height: var(--hub-h);
+    translate: -50% -50%;
+    scale: var(--hub-scale);
+    opacity: var(--hub-opacity);
+    box-shadow:
+      0 88px 44px -32px rgb(42 51 70 / 0.06),
+      0 64px 32px -32px rgb(42 51 70 / 0.04),
+      0 48px 24px -24px rgb(42 51 70 / 0.04),
+      0 24px 12px -12px rgb(42 51 70 / 0.04),
+      0 12px 6px -6px rgb(42 51 70 / 0.04),
+      0 6px 3px -3px rgb(42 51 70 / 0.04),
+      0 2px 1px -1px rgb(42 51 69 / 0.04),
+      0 0 0 2px rgb(14 63 126 / 0.04);
+    transition-property: width, height, scale, opacity;
+  }
+  .prompt {
+    translate: 0 calc(-50% + var(--prompt-y));
+    opacity: var(--prompt-opacity);
+    transition-property: opacity, translate;
+  }
+  .stage:is([data-state="1"], [data-state="2"], [data-state="3"]) .word {
+    animation: word-in 0.8s cubic-bezier(0.8, 0, 0.2, 1) calc(var(--i) * 75ms) both;
+  }
+  @keyframes word-in {
+    from {
+      filter: blur(4px);
+      opacity: 0;
+      translate: 10px 10px;
+    }
+  }
+  .icons {
+    translate: 0 calc(var(--icon-shift) * -1 * (var(--icon) + 12px));
+    transition-property: translate;
+  }
+  .icon {
+    width: var(--icon);
+    height: var(--icon);
+    transition-property: width, height;
+  }
+
+  .line,
+  .step {
+    opacity: var(--steps);
+    transition-property: opacity;
+  }
+  .pill {
+    background: var(--color-primary);
+    transition-property: background-color;
+  }
+  .step[data-step="off"] .pill {
+    background: var(--color-lavender);
+  }
+  .badge {
+    opacity: 1;
+    transition-property: opacity;
+  }
+  .step[data-step="off"] .badge {
+    opacity: 0;
+  }
+  .ring {
+    transition-property: opacity, scale;
+  }
+  .step[data-step="done"] .ring {
+    opacity: 0;
+    scale: 0.3;
+  }
+  .spinner {
+    mask: conic-gradient(#000 89.6deg, #0000 90deg);
+    animation: spin 1s linear infinite;
+  }
+  .tick {
+    opacity: 0;
+    scale: 0.3;
+    transition-property: opacity, scale;
+  }
+  .step[data-step="done"] .tick {
+    opacity: 1;
+    scale: 1;
+  }
+
+  .report {
+    scale: var(--report-scale);
+    opacity: var(--report-opacity);
+    transition-property: scale, opacity;
+  }
+  .report-line {
+    position: relative;
+    border-radius: 6.62px;
+    background: var(--color-page);
+    box-shadow: inset 0 3.3px 21.8px 0 rgb(246 247 250);
+    outline: 1px solid #e9edf8;
+    outline-offset: -1px;
+  }
+</style>
+
+<script>
+  import "../../scripts/hero-animation.ts";
+</script>

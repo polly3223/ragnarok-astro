@@ -1,0 +1,160 @@
+---
+// Plans with a shared "Billed Yearly" switch (scripts/billing.ts) — used on home and /pricing.
+import Tick from "../../icons/tick.svg";
+import TickPrimary from "../../icons/tick-primary.svg";
+import AsciiVideo from "../ui/AsciiVideo.astro";
+import Button from "../ui/Button.astro";
+import Corners from "../ui/Corners.astro";
+import SectionIntro from "../ui/SectionIntro.astro";
+import { plans } from "../../data/plans";
+
+interface Props {
+  /** Page-top placement (/pricing): leaves room for the fixed navbar. */
+  top?: boolean;
+}
+
+const { top = false } = Astro.props;
+---
+
+<section data-pricing class:list={["flex w-full flex-col overflow-clip", top && "md:pt-20"]}>
+  <div class="flex w-full">
+    <div
+      class:list={[
+        "edge edge-x relative flex flex-1 flex-col items-center gap-20 overflow-hidden px-5 pb-15 md:px-10 md:py-20",
+        top ? "pt-32" : "pt-15",
+      ]}
+    >
+      <SectionIntro
+        center
+        icon="/images/icons/pricing.png"
+        label="Pricing"
+        title="Plans That Scale With Your Goals"
+        lead="Choose a plan that matches your ambition for your company."
+        class="max-w-[415px]"
+      />
+      <div class="absolute -bottom-[133px] left-0 hidden h-[486px] w-[360px] rotate-180 lg:block">
+        <AsciiVideo src="/videos/pricing.mp4" class="mask-fade absolute top-0 left-1/2 aspect-[0.741093] w-full -translate-x-1/2" />
+      </div>
+      <div class="absolute -top-[133px] right-0 hidden h-[486px] w-[360px] lg:block">
+        <AsciiVideo src="/videos/pricing.mp4" class="mask-fade absolute top-0 left-1/2 aspect-[0.741093] w-full -translate-x-1/2" />
+      </div>
+      <Corners />
+    </div>
+  </div>
+
+  <div class="flex w-full flex-col lg:flex-row">
+    {
+      plans.map((plan, i) => (
+        <div
+          class:list={[
+            "edge edge-t edge-r relative flex w-full flex-col bg-page lg:w-auto lg:flex-1",
+            i === 0 && "edge-l",
+            i > 0 && "max-lg:edge-l",
+            i === plans.length - 1 && "max-lg:edge-b",
+          ]}
+        >
+          <div class="flex flex-col gap-6 p-5 md:p-10">
+            <div class="flex flex-col gap-6">
+              <div class="flex flex-col gap-4">
+                <div class="flex items-center gap-2">
+                  <h3 class="type-h3 flex-1 text-ink">{plan.name}</h3>
+                  {plan.popular && <span class="rounded bg-primary/10 px-1 py-0.5 text-sm leading-[1.4] text-primary">Most Popular</span>}
+                </div>
+                <p class="type-lead w-4/5">{plan.description}</p>
+              </div>
+              <div class="flex items-end gap-1">
+                <span class="font-grotesk text-lg leading-[1.4] font-medium tracking-[-0.04em] text-ink">$</span>
+                <span
+                  data-price-monthly={plan.monthly}
+                  data-price-yearly={plan.yearly}
+                  class="font-grotesk text-[40px] leading-[1.1] font-[450] tracking-[0.01em] whitespace-pre text-ink"
+                >
+                  {plan.monthly}
+                </span>
+                <span class="type-body">/ month</span>
+              </div>
+            </div>
+            <div class="edge edge-all relative flex flex-col gap-4 overflow-hidden rounded-md bg-white p-3">
+              <div class="flex h-7 items-center justify-between">
+                <button type="button" role="switch" aria-checked="false" data-billing-toggle class="flex cursor-pointer items-center gap-2">
+                  <span class="switch relative h-7 w-[55px] overflow-hidden rounded-[5px]">
+                    <span class="switch-symbols absolute top-2 flex w-[53px] items-center justify-between">
+                      <span class="h-[11px] w-px bg-white" />
+                      <span class="size-[11px] rounded-full border-2 border-white" />
+                    </span>
+                    <span class="switch-knob absolute top-0.5 size-6 rounded-[4px]" />
+                  </span>
+                  <span class="type-body text-ink">Billed Yearly</span>
+                </button>
+                <span class="yearly-only rounded bg-primary/10 px-1 py-0.5 text-xs leading-[1.2] tracking-[-0.01em] text-primary">2 months free</span>
+              </div>
+              <Button
+                href="https://framer.link/breeje83"
+                label="Get Started"
+                variant={plan.popular ? "primary" : "secondary"}
+                newTab={plan.popular ?? false}
+                full
+              />
+            </div>
+          </div>
+          {plan.points.map((point) => (
+            <div class="edge edge-t relative flex items-center gap-2.5 px-5 py-2.5 md:px-10 md:py-5">
+              {plan.popular ? <TickPrimary class="m-px size-3.5 shrink-0" /> : <Tick class="m-px size-3.5 shrink-0" />}
+              <p class="type-body flex-1">{point}</p>
+            </div>
+          ))}
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .switch {
+    background: var(--color-toggle);
+    box-shadow: inset 0 0.7px 2px rgb(0 0 0 / 0.25);
+    transition: background-color 0.3s;
+  }
+  .switch-symbols {
+    left: -6px;
+    transition: left 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+  }
+  .switch-knob {
+    left: 2px;
+    background: linear-gradient(#fff, #d1d1d1);
+    box-shadow:
+      0 0.8px 1.15px -0.6px rgb(0 0 0 / 0.26),
+      0 2.1px 2.95px -1.25px rgb(0 0 0 / 0.25),
+      0 4.2px 5.9px -1.9px rgb(0 0 0 / 0.24),
+      0 8px 11.2px -2.5px rgb(0 0 0 / 0.22),
+      0 15.9px 22.3px -3.1px rgb(0 0 0 / 0.18),
+      0 35px 49px -3.75px rgb(0 0 0 / 0.09);
+    transition: left 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+  }
+  .switch-knob::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: 3.5px;
+    background: linear-gradient(#f2f2f2, #e8e8e8);
+  }
+  .yearly-only {
+    display: none;
+  }
+  [data-yearly] .switch {
+    background: var(--color-primary);
+  }
+  [data-yearly] .switch-symbols {
+    left: 14px;
+  }
+  [data-yearly] .switch-knob {
+    left: 28px;
+  }
+  [data-yearly] .yearly-only {
+    display: block;
+  }
+</style>
+
+<script>
+  import "../../scripts/billing.ts";
+</script>

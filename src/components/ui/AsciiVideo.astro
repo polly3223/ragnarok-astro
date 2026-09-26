@@ -1,0 +1,26 @@
+---
+// Decorative ASCII-art rendering of a looping video (see scripts/ascii-video.ts).
+interface Props {
+  src: string;
+  class?: string;
+  brightness?: number;
+  contrast?: number;
+}
+
+const { src, class: className, brightness, contrast } = Astro.props;
+---
+
+<div
+  aria-hidden="true"
+  data-ascii
+  data-src={src}
+  data-brightness={brightness}
+  data-contrast={contrast}
+  class:list={["pointer-events-none overflow-hidden text-lavender", className]}
+>
+  <canvas class="block size-full"></canvas>
+</div>
+
+<script>
+  import "../../scripts/ascii-video.ts";
+</script>

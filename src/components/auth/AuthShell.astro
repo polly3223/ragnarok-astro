@@ -1,0 +1,124 @@
+---
+// Shared layout of the FrameAuth pages (sign in/up, password flows, account): intro column,
+// auth card with a static demo form, and the "Powered by FrameAuth" line.
+import FrameAuth from "../../icons/frameauth.svg";
+import Google from "../../icons/google.svg";
+import Button from "../ui/Button.astro";
+import Corners from "../ui/Corners.astro";
+
+interface Props {
+  title?: string;
+  lead?: string;
+  card?: { title: string; href: string; label: string };
+  social?: boolean;
+  submit: string;
+  /** "Forgot password?" under the card: a link (sign in) or, as on the template's own reset page, plain text. */
+  forgot?: "link" | "text";
+  /** Minimum section height (the template fixes it on some pages). */
+  minHeight?: number;
+  /** Reset-password rules list, ticked live as the user types. */
+  checklist?: boolean;
+  /** Desktop height of the intro column (fixed per page in the template). */
+  height: number;
+}
+
+const { title, lead, card, social = false, submit, forgot, checklist = false, height, minHeight = 0 } = Astro.props;
+const rules = [
+  ["length", "At least 8 characters"],
+  ["uppercase", "At least one uppercase letter"],
+  ["lowercase", "At least one lowercase letter"],
+  ["digit", "At least one digit"],
+  ["special", "At least one special character"],
+];
+const provider = "flex h-[50px] w-full cursor-pointer items-center justify-center gap-2 rounded-[5px] bg-white p-4 text-lg leading-none text-ink shadow-[inset_0_0_0_1px_rgb(200_200_200/0.5)]";
+---
+
+<section
+  class="edge edge-b relative flex w-full flex-col md:pt-20 lg:flex-row lg:items-center"
+  style={`--auth-h: ${height}px; min-height: ${minHeight}px`}
+>
+  <div class="edge edge-x edge-b relative flex px-5 pt-32 pb-10 md:p-10 lg:h-(--auth-h) lg:w-1/2 lg:edge-b-0">
+    <div class="flex w-full flex-col justify-between gap-5 md:gap-10">
+      <div class="flex max-w-[480px] flex-col gap-4">
+        <slot name="intro" />
+        {title && <h1 class="type-hero text-ink">{title}</h1>}
+        {lead && <p class="type-lead">{lead}</p>}
+      </div>
+      {
+        card && (
+          <div class="edge edge-all relative flex flex-col gap-5 rounded-lg bg-white p-5 md:flex-row md:items-center md:gap-2">
+            <h3 class="flex-1 font-grotesk text-xl leading-[1.2] font-medium tracking-[-0.04em] text-ink">{card.title}</h3>
+            <Button href={card.href} label={card.label} variant="secondary" class="max-md:w-full" />
+          </div>
+        )
+      }
+      <slot name="after" />
+    </div>
+    <Corners />
+  </div>
+  <div class="edge edge-r relative flex flex-col items-center justify-center gap-4 px-5 py-10 max-lg:edge-l md:p-10 lg:w-1/2">
+    <div class="edge edge-all relative flex w-full flex-col gap-5 rounded-lg bg-white px-5 py-8">
+      {
+        social && (
+          <div class="flex gap-2.5">
+            <button type="button" class={provider}><Google class="size-[18px]" />Google</button>
+            <button type="button" class={provider}><img src="/images/auth/github.svg" alt="" class="size-[18px]" />GitHub</button>
+          </div>
+        )
+      }
+      <form data-demo-form class="flex flex-col gap-4">
+        <slot />
+        <input
+          type="submit"
+          value={submit}
+          class="h-[50px] w-full cursor-pointer rounded-[5px] bg-ink p-4 text-lg leading-none text-white shadow-[inset_0_0_0_1px_rgb(200_200_200/0.5)]"
+        />
+      </form>
+      {
+        checklist && (
+          <ul data-password-rules class="-mt-1 flex flex-col gap-2.5 text-xs text-black">
+            {rules.map(([rule, text]) => (
+              <li data-rule={rule} class="flex items-center gap-[5px] opacity-50 transition-opacity data-met:opacity-100">
+                <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="size-4">
+                  <path d="M7.47 6.97 4.22 3.72a.75.75 0 0 0-1.06 1.06L6.38 8l-3.22 3.22a.75.75 0 1 0 1.06 1.06l3.25-3.22 3.25 3.25a.75.75 0 0 0 1.06-1.06L8.53 8l3.25-3.25a.75.75 0 0 0-1.06-1.06L7.47 6.94z" />
+                </svg>
+                {text}
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+    {forgot === "link" && <a href="/forgot-password" class="text-sm leading-[1.4] text-[#09f]">Forgot password?</a>}
+    {forgot === "text" && <p class="text-sm leading-[1.4] text-ink">Forgot password?</p>}
+  </div>
+</section>
+<a href="https://dub.frameauth.com/breeje-anadkat" target="_blank" rel="noopener" class="flex items-center justify-center gap-4 p-6">
+  <FrameAuth class="size-6" />
+  <span class="type-label text-[#666]">Powered by FrameAuth</span>
+</a>
+
+<script>
+  import "../../scripts/demo-form.ts";
+
+  // FrameAuth's password rules, re-checked on every keystroke.
+  const RULES: Record<string, RegExp> = { length: /.{8,}/, uppercase: /[A-Z]/, lowercase: /[a-z]/, digit: /\d/, special: /\W|_/ };
+  document.querySelectorAll<HTMLElement>("[data-password-rules]").forEach((list) => {
+    const input = list.parentElement?.querySelector<HTMLInputElement>('input[type="password"]');
+    input?.addEventListener("input", () => {
+      list.querySelectorAll<HTMLElement>("[data-rule]").forEach((item) => {
+        item.toggleAttribute("data-met", RULES[item.dataset.rule ?? ""]?.test(input.value) ?? false);
+      });
+    });
+  });
+
+  document.querySelectorAll<HTMLButtonElement>("[data-reveal-password]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const input = button.parentElement?.querySelector("input");
+      if (!input) return;
+      const hidden = input.type === "password";
+      input.type = hidden ? "text" : "password";
+      button.setAttribute("aria-label", hidden ? "Hide password" : "Show password");
+    });
+  });
+</script>

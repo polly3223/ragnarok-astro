@@ -1,0 +1,234 @@
+---
+import AsciiVideo from "../components/ui/AsciiVideo.astro";
+import Corners from "../components/ui/Corners.astro";
+import IconCard from "../components/ui/IconCard.astro";
+import PhotoTicker from "../components/ui/PhotoTicker.astro";
+import SectionIntro from "../components/ui/SectionIntro.astro";
+import Separator from "../components/ui/Separator.astro";
+import Layout from "../layouts/Layout.astro";
+
+// Inline icon tiles of the motto: [background, rotation, icon]
+const tiles = {
+  logo: ["#262ef2", "-5.7deg", "/images/brand/logo-mark.png"],
+  agent: ["#ed4d13", "0deg", "/images/about/motto-2.png"],
+  flow: ["#7933ea", "8deg", "/images/about/motto-3.png"],
+  ship: ["#1e8c2c", "-3deg", "/images/about/motto-4.png"],
+} as const;
+const motto: Array<Array<string | keyof typeof tiles>> = [
+  ["At ", "logo", " Ragnarok , we build reliable ", "agent", " AI agents"],
+  ["that handle real workflows ", "flow", " across research &"],
+  ["planning to ", "ship", " execution & delivery."],
+];
+const photos = ["inside-1.webp", "inside-2.png", "inside-3.jpg", "inside-4.webp", "inside-5.webp"].map((f) => `/images/about/${f}`);
+const values: Array<[title: string, text: string]> = [
+  ["Precision", "Precision matters more than just being fast."],
+  ["Trust", "If you can’t trust it, you can’t scale your ambition."],
+  ["Simplicity", "Complex work should feel effortlessly simple."],
+  ["Speed", "Reduce cycle time across every team without mess."],
+  ["Accountability", "Every action should be traceable."],
+  ["Security", "Protect data like it’s mission-critical."],
+  ["Adaptability", "Workflows evolve, agents should also do."],
+  ["Impact", "Automation must create some impactful results."],
+];
+const team: Array<[name: string, role: string]> = [
+  ["James Cooper", "CEO & Founder"],
+  ["Olivia Carter", "CTO & Co-Founder"],
+  ["Maya Reynolds", "Head of Product"],
+  ["Shubham Biswas", "Lead Engineer"],
+  ["Chloe Morgan", "Growth & Partnerships"],
+  ["Daniel Wright", "Customer Success Lead"],
+];
+// Placeholder hrefs: the template points every member at its author's personal profiles.
+const socials = [
+  ["X", "/images/social/x.png"],
+  ["Instagram", "/images/social/instagram.png"],
+  ["LinkedIn", "/images/social/linkedin-box.png"],
+];
+const slug = (name: string) => name.toLowerCase().replace(/\s+/g, "-");
+// The ASCII layers overflow their box slightly (111.3% wide), like the original.
+const ascii = "absolute top-0 left-1/2 aspect-[1.129] w-[111.3%] -translate-x-1/2";
+---
+
+<Layout mobileApp>
+  <section class="flex w-full flex-col md:pt-20">
+    <div class="edge edge-x relative flex overflow-hidden px-5 pt-32 pb-15 md:px-10 md:py-20">
+      <SectionIntro
+        as="h1"
+        hero
+        icon="/images/icons/about.png"
+        label="About Us"
+        title="Story Behind Ragnarok AI"
+        lead="We help startups deploy reliable AI agents that automate real work from planning to execution without adding more headcount."
+        class="max-w-[650px]"
+      />
+      <div class="absolute top-[3px] right-[13px] hidden size-[337px] lg:block">
+        <AsciiVideo src="/videos/about-hero.mp4" class={ascii} />
+      </div>
+      <Corners />
+    </div>
+    <div class="edge edge-all relative w-full">
+      <img src="/images/about/team.png" alt="The Ragnarok AI team" class="aspect-[1360/728] w-full object-cover" />
+    </div>
+  </section>
+  <Separator />
+
+  <section class="edge edge-x edge-b relative flex w-full flex-col items-center overflow-hidden px-5 py-15 md:px-10 md:py-20">
+    <h2 class="motto w-full text-center font-grotesk font-medium text-ink">
+      {
+        motto.map((line) => (
+          <span class="block">
+            {line.map((part) => {
+              if (!(part in tiles)) return part;
+              const [bg, rotate, icon] = tiles[part as keyof typeof tiles];
+              return (
+                <span class="tile inline-flex items-center justify-center align-middle shadow-icon" style={{ background: bg, rotate }}>
+                  <img src={icon} alt="" class="size-[58.3%]" />
+                </span>
+              );
+            })}
+          </span>
+        ))
+      }
+    </h2>
+    <Corners />
+  </section>
+  <Separator />
+
+  <section class="flex w-full flex-col">
+    <div class="edge edge-x relative flex overflow-hidden px-5 py-15 md:px-10 md:py-20">
+      <SectionIntro
+        icon="/images/icons/inside-team.png"
+        label="Inside Team"
+        title="Behind the Build"
+        lead="Built by a small team that cares about outcomes, not just impressive responses."
+      />
+      <div class="absolute top-[3px] right-[13px] hidden size-[337px] lg:block">
+        <AsciiVideo src="/videos/about-inside-team.mp4" class:list={[ascii, "text-primary"]} />
+      </div>
+      <Corners />
+    </div>
+    <PhotoTicker photos={photos} />
+  </section>
+
+  <section class="flex w-full flex-col">
+    <div class="edge edge-x relative flex flex-col items-center overflow-hidden px-5 py-15 md:px-10 md:py-20">
+      <SectionIntro
+        center
+        icon="/images/icons/values.png"
+        label="Our Values"
+        title="The Ragnarok Standard"
+        lead="These values guide how we design, build, and ship automation that teams depend on daily basis."
+        class="md:max-w-[450px] lg:max-w-[550px]"
+      />
+      <div class="absolute top-[21px] -right-[148px] hidden size-[300px] lg:block">
+        <AsciiVideo src="/videos/about-values.mp4" class={ascii} />
+      </div>
+      <div class="absolute top-[21px] -left-[148px] hidden size-[300px] lg:block">
+        <AsciiVideo src="/videos/about-values.mp4" class={ascii} />
+      </div>
+      <Corners />
+    </div>
+    <div class="flex w-full flex-col">
+      {
+        [values.slice(0, 4), values.slice(4)].map((row, r) => (
+          <div class:list={["flex w-full flex-col lg:flex-row", r === 1 && "md:w-[730px] lg:w-full"]}>
+            {row.map(([title, text], i) => (
+              <IconCard
+                icon={`/images/values/${title.toLowerCase()}.png`}
+                title={title}
+                text={text}
+                class:list={["edge-t edge-x lg:flex-1", i < 3 && "lg:edge-r-0", r === 1 && "lg:edge-b", r === 1 && i === 3 && "edge-b"]}
+              />
+            ))}
+          </div>
+        ))
+      }
+    </div>
+  </section>
+  <Separator />
+
+  <section class="edge edge-b relative flex w-full flex-col overflow-clip md:flex-row md:items-start">
+    <div class="edge edge-l relative flex w-full items-start self-stretch md:w-1/2">
+      <div
+        class="edge edge-r edge-b relative flex w-full flex-col overflow-hidden px-5 py-15 md:sticky md:top-0 md:edge-r-0 md:px-10 md:pt-20 md:pb-0"
+      >
+        <SectionIntro
+          icon="/images/icons/team.png"
+          label="Our Team"
+          title="Meet the team of Ragnarok AI"
+          lead="A small team building high-trust agent systems for modern workflows."
+          class="max-w-[415px]"
+        />
+        <div class="relative hidden h-80 w-[336px] lg:block">
+          <AsciiVideo src="/videos/about-team.mp4" class={ascii} />
+        </div>
+        <Corners />
+      </div>
+    </div>
+    <div class="grid w-full md:w-1/2 lg:grid-cols-2">
+      {
+        team.map(([name, role], i) => (
+          <div
+            class:list={[
+              "edge edge-r edge-b edge-l relative flex flex-col justify-end gap-3 overflow-clip px-5 pt-80 pb-5 md:pt-65 lg:h-[481px]",
+              i % 2 === 1 && "lg:edge-l-0",
+              i === team.length - 1 && "md:edge-l-0",
+            ]}
+          >
+            <img src={`/images/team/${slug(name)}.png`} alt="" loading="lazy" class="absolute inset-x-0 top-0 h-[345px] w-full object-cover object-top md:h-full" />
+            <span class="absolute inset-x-0 bottom-15 h-[177px] bg-linear-to-b from-page/0 to-page to-[51.9%] md:bottom-0" />
+            <div class="relative flex flex-col gap-3">
+              <h3 class="font-grotesk text-xl leading-[1.2] font-medium tracking-[-0.04em] text-ink">{name}</h3>
+              <p class="text-sm leading-6 font-medium text-body lg:text-base">{role}</p>
+            </div>
+            <div class="edge edge-all relative flex items-center justify-between bg-white p-3">
+              <div class="flex items-center gap-1">
+                <span class="size-1.5 bg-primary" />
+                <span class="font-grotesk text-sm leading-[1.1] font-medium tracking-[-0.01em] text-ink">SOCIALS</span>
+              </div>
+              <div class="flex items-center gap-4">
+                {socials.map(([label, icon]) => (
+                  <a href="#" aria-label={`${name} on ${label}`}>
+                    <img src={icon} alt="" class="size-5" />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .motto {
+    font-size: 24px;
+    line-height: 1.6;
+  }
+  .tile {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+  }
+  @media (width >= 810px) {
+    .motto {
+      font-size: 28px;
+    }
+    .tile {
+      width: 36px;
+      height: 36px;
+      border-radius: 10.29px;
+    }
+  }
+  @media (width >= 1200px) {
+    .motto {
+      font-size: 36px;
+    }
+    .tile {
+      width: 48px;
+      height: 48px;
+      border-radius: 13.72px;
+    }
+  }
+</style>

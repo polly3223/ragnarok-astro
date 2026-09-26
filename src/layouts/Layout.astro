@@ -1,0 +1,62 @@
+---
+import "../styles/global.css";
+import BuyTemplate from "../components/layout/BuyTemplate.astro";
+import CtaMarquee from "../components/layout/CtaMarquee.astro";
+import Footer from "../components/layout/Footer.astro";
+import Preloader from "../components/home/Preloader.astro";
+import MobileAppCta from "../components/layout/MobileAppCta.astro";
+import Navbar from "../components/layout/Navbar.astro";
+import SideMargins from "../components/layout/SideMargins.astro";
+
+interface Props {
+  title?: string;
+  image?: string;
+  /** Show the "Be First to Try the Mobile App" section before the footer. */
+  mobileApp?: boolean;
+  /** Play the home-page loading overlay. */
+  preloader?: boolean;
+}
+
+const { title = "Ragnarok - AI Agent Template", image = "/images/og.png", mobileApp = false, preloader = false } = Astro.props;
+const description = "Ragnarok AI helps AI agent startups launch with authority, clarity, and pure tech vibes.";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script is:inline>
+      document.documentElement.dataset.js = "";
+    </script>
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    <link rel="preload" href="/fonts/space-grotesk-500.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin />
+  </head>
+  <body class="min-h-screen overflow-x-clip">
+    {preloader && <Preloader />}
+    <SideMargins />
+    <Navbar />
+    <main class="mx-auto flex w-full max-w-[1920px] flex-col items-center overflow-clip px-5 md:px-10">
+      <slot />
+    </main>
+    {mobileApp && <MobileAppCta />}
+    <CtaMarquee />
+    <Footer />
+    <BuyTemplate />
+    <script>
+      import "../scripts/hover-effects.ts";
+    </script>
+  </body>
+</html>

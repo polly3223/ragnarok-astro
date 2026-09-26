@@ -1,0 +1,29 @@
+---
+// Text link with the template's scramble-on-hover label (navbar and footer variants).
+interface Props {
+  href: string;
+  label: string;
+  variant?: "nav" | "footer";
+  dark?: boolean;
+  newTab?: boolean;
+}
+
+const { href, label, variant = "footer", dark = false, newTab = false } = Astro.props;
+const nav = variant === "nav";
+---
+
+<a
+  href={href}
+  target={newTab ? "_blank" : undefined}
+  rel={newTab ? "noopener" : undefined}
+  data-fx
+  class:list={[
+    "group relative flex w-max items-center rounded-[4px] transition-colors duration-400",
+    nav ? "px-2.5 py-[11px] hover:bg-ink/5" : "",
+    dark || nav ? "text-ink" : "text-body",
+  ]}
+>
+  <span class:list={["relative flex", nav ? "h-4 text-base leading-none" : "h-5 text-sm leading-[1.4]"]}>
+    <span data-fx-label class="whitespace-pre transition-opacity duration-400 group-hover:opacity-0">{label}</span>
+  </span>
+</a>

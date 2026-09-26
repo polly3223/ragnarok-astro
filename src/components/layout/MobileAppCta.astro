@@ -1,0 +1,33 @@
+---
+// "Be First to Try the Mobile App" section with phone mockup and QR code.
+import AsciiVideo from "../ui/AsciiVideo.astro";
+import Corners from "../ui/Corners.astro";
+import SectionBadge from "../ui/SectionBadge.astro";
+import Separator from "../ui/Separator.astro";
+---
+
+<section class="mx-auto flex w-full max-w-[1920px] flex-col px-5 md:px-10">
+  <Separator />
+  <div class="edge edge-b relative flex flex-col items-center overflow-clip">
+    <div class="edge edge-x relative flex w-full flex-col items-center gap-10 overflow-hidden px-5 pt-15 md:px-10 md:pt-20">
+      <div class="relative z-3 flex w-full max-w-[415px] flex-col items-center gap-6">
+        <SectionBadge icon="/images/icons/mobile-app.png" label="Mobile App Beta" />
+        <h2 class="type-h2 text-center text-ink">Be First to Try the Mobile App</h2>
+      </div>
+      <div class="relative z-3 flex">
+        <img src="/images/cta/phone.png" alt="" class="h-[310px] w-[260px] md:h-[477px] md:w-[400px]" />
+        <div
+          class="absolute top-[58px] left-1/2 flex w-[226px] -translate-x-1/2 flex-col items-center gap-[18.84px] md:top-[87px] md:w-[276px] md:gap-[23px]"
+        >
+          <h3 class="type-h3 text-center text-ink">Scan to download<br />beta version</h3>
+          <img src="/images/cta/qr.png" alt="QR code to download the beta app" class="h-[180px] w-4/5 md:h-[276px] md:w-full" />
+        </div>
+      </div>
+      <AsciiVideo
+        src="/videos/cta.mp4"
+        class="mask-fade absolute bottom-0 left-1/2 z-1 hidden aspect-[1.77778] w-[1120px] -translate-x-1/2 lg:block"
+      />
+      <Corners />
+    </div>
+  </div>
+</section>

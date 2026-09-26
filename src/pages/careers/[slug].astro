@@ -1,0 +1,79 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import Button from "../../components/ui/Button.astro";
+import Corners from "../../components/ui/Corners.astro";
+import FormField from "../../components/ui/FormField.astro";
+import SectionBadge from "../../components/ui/SectionBadge.astro";
+import Separator from "../../components/ui/Separator.astro";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const jobs = await getCollection("jobs");
+  return jobs.map((job) => ({ params: { slug: job.id }, props: { job } }));
+}
+
+interface Props {
+  job: CollectionEntry<"jobs">;
+}
+
+const { job } = Astro.props;
+const { title, salary, location, type, department } = job.data;
+const { Content } = await render(job);
+const details = [
+  ["Salary", salary],
+  ["Location", location],
+  ["Job Type", type],
+  ["Department", department],
+];
+---
+
+<Layout title={`${title} - My Framer Site`}>
+  <section class="flex w-full flex-col md:pt-20">
+    <div class="edge edge-x edge-b relative flex overflow-hidden px-5 pt-32 pb-15 md:px-10 md:py-20">
+      <div class="relative z-2 flex flex-col gap-6">
+        <SectionBadge icon="/images/icons/careers.png" label="Job Description" />
+        <h1 class="type-h2 text-ink">{title}</h1>
+      </div>
+      <Corners />
+    </div>
+  </section>
+  <Separator />
+
+  <section class="edge edge-x edge-b relative flex w-full flex-col-reverse gap-10 px-5 py-10 md:flex-row md:items-start md:gap-20 md:px-10 md:py-20">
+    <div class="article min-w-0 flex-1">
+      <Content />
+    </div>
+    <aside class="edge edge-all relative flex w-full shrink-0 flex-col gap-6 rounded-[14px] bg-white p-5 md:sticky md:top-20 md:w-[272px]">
+      <dl class="flex flex-col gap-6 pr-15">
+        {
+          details.map(([term, value]) => (
+            <div class="flex flex-col gap-2">
+              <dt class="font-grotesk text-sm leading-[1.4] tracking-[-0.02em] text-body uppercase">{term}</dt>
+              <dd class="font-grotesk text-xl leading-[1.2] font-medium text-ink">{value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+      <Button href="#apply-job" label="Apply for this Job" full />
+    </aside>
+  </section>
+  <Separator />
+
+  <section id="apply-job" class="edge edge-x edge-b relative flex w-full flex-col items-center gap-10 px-5 py-15 md:px-10 md:py-20">
+    <h2 class="type-h2 text-center text-ink">Apply for this job</h2>
+    <form data-demo-form class="flex w-full max-w-[600px] flex-col gap-5 rounded-lg bg-white px-5 py-5 md:py-8">
+      <FormField label="Name" name="Name" placeholder="Enter full name" required autocomplete="name" />
+      <div class="flex flex-col gap-5 md:flex-row">
+        <FormField label="Email" name="Email" type="email" placeholder="Enter email" required autocomplete="email" />
+        <FormField label="Phone (Optional)" name="Phone" placeholder="Enter phone number" autocomplete="tel" />
+      </div>
+      <FormField label="Website (Optional)" name="Website" placeholder="Attach your portfolio or CV" />
+      <FormField label="Why do you want to join?" name="Message" type="textarea" placeholder="Describe" />
+      <Button label="Apply" full class="rounded-[10px]" />
+    </form>
+  </section>
+</Layout>
+
+<script>
+  import "../../scripts/demo-form.ts";
+</script>

@@ -1,0 +1,142 @@
+---
+// Testimonial slider (scripts/testimonials.ts): photos slide vertically, quotes horizontally and
+// the desktop-only result column in the opposite direction; results count up once in view.
+import PixelLeft from "../../icons/pixel-left.svg";
+import PixelRight from "../../icons/pixel-right.svg";
+import Quote from "../../icons/quote.svg";
+import AsciiVideo from "../ui/AsciiVideo.astro";
+import Corners from "../ui/Corners.astro";
+import SectionIntro from "../ui/SectionIntro.astro";
+
+const testimonials = [
+  {
+    name: "Ethan Walker",
+    role: "Product Manager, Vertex E-Com",
+    photo: "/images/testimonials/ethan-walker.jpg",
+    logo: "/images/testimonials/vertex.png",
+    quote:
+      "“We tested multiple automation tools before this, but most of them felt like demos rather than real systems. What stood out here was the consistency agents actually complete tasks end-to-end and don’t fall apart when workflows get complex. The integration setup was straightforward, and the output quality stayed stable across runs. This helped our team focus on higher-leverage work instead of babysitting automations.”",
+    result: { value: 48, prefix: "", suffix: "%" },
+    detail: "Faster execution by automating recurring ops workflows and reducing internal handoffs.",
+  },
+  {
+    name: "Sophia Bennett",
+    role: "Operations Lead, Northwind Labs",
+    photo: "/images/testimonials/sophia-bennett.jpg",
+    logo: "/images/testimonials/northwind.png",
+    quote:
+      "“Switching to this platform changed how our team handles repetitive ops work. We set up a few agents for research, reporting, and internal workflows, and the results were immediate. The experience feels stable, predictable, and surprisingly easy to scale across different teams. It’s become a core part of how we ship faster without adding more headcount. Highly recommend it for any fast-moving startup.”",
+    result: { value: 32, prefix: "$", suffix: "K" },
+    detail: "Recovered annually by automating research, follow-ups, and routine workflows with agents.",
+  },
+  {
+    name: "Claire Johnson",
+    role: "CEO, Horizon Digital",
+    photo: "/images/testimonials/claire-johnson.jpg",
+    logo: "/images/testimonials/horizon.png",
+    quote:
+      "“Our biggest concern was reliability, especially with workflows that touch customer communication and internal reporting. After deploying agents across a few processes, the improvement was obvious fewer handoffs, fewer missed steps, and faster turnaround times. The system feels production-ready, and the task visibility makes it easy to trust what’s happening. It’s now one of the first tools we recommend internally.”",
+    result: { value: 70, prefix: "", suffix: "H" },
+    detail: "Saved per month by automating multi-step processes with clear execution and task visibility.",
+  },
+];
+const arrow =
+  "edge edge-all relative flex size-12 items-center justify-center rounded-[14px] bg-linear-to-b from-white to-[#f5f5f5] shadow-button enabled:cursor-pointer *:transition-opacity *:duration-400 disabled:*:opacity-40";
+const video = "mask-fade absolute top-0 left-1/2 size-full -translate-x-1/2";
+---
+
+<section data-testimonials class="flex w-full flex-col overflow-clip [--i:0]">
+  <div class="relative flex w-full">
+    <div
+      class="edge edge-x relative flex flex-1 flex-col gap-10 overflow-hidden px-5 py-15 md:flex-row md:items-end md:justify-between md:px-10 md:py-20"
+    >
+      <SectionIntro
+        icon="/images/icons/testimonials.png"
+        label="Testimonials"
+        title="Trusted by Fast-Growing Startups"
+        lead="Built for lean teams that need reliable automation to scale faster and better with fewer resources."
+        class="max-w-[415px] md:flex-1"
+      />
+      <div class="relative z-5 flex gap-2">
+        <button type="button" data-prev disabled aria-label="Previous testimonial" class={arrow}>
+          <span class="flex size-6 pl-[5px]"><PixelLeft class="h-6 w-[15px]" /></span>
+        </button>
+        <button type="button" data-next aria-label="Next testimonial" class={arrow}>
+          <span class="flex size-6 pl-[5px]"><PixelRight class="h-6 w-[15px]" /></span>
+        </button>
+      </div>
+      <Corners />
+    </div>
+    <div class="absolute -top-[113px] right-[100px] z-1 hidden h-[486px] w-[360px] lg:block">
+      <AsciiVideo src="/videos/testimonials.mp4" brightness={-0.1} contrast={2} class={video} />
+    </div>
+    <div class="absolute -top-[62px] right-[300px] z-1 hidden h-[324px] w-[240px] lg:block">
+      <AsciiVideo src="/videos/testimonials.mp4" brightness={-0.1} contrast={2} class={video} />
+    </div>
+    <div class="absolute -top-[62px] right-[15px] z-1 hidden h-[324px] w-[240px] lg:block">
+      <AsciiVideo src="/videos/testimonials.mp4" brightness={-0.1} contrast={2} class={video} />
+    </div>
+  </div>
+
+  <div class="flex h-[800px] w-full flex-col overflow-hidden md:h-[480px] md:flex-row">
+    <div class="edge edge-t edge-x relative flex h-[340px] w-full flex-col gap-px overflow-hidden md:h-full md:flex-1 md:edge-b lg:w-[33%] lg:flex-none">
+      {
+        testimonials.map((t) => (
+          <img src={t.photo} alt={t.name} class="slide slide-up size-full shrink-0 object-cover object-top" loading="lazy" />
+        ))
+      }
+    </div>
+    <div class="edge edge-all relative flex w-full flex-1 overflow-hidden md:edge-l-0 lg:w-[33%] lg:flex-none">
+      {
+        testimonials.map((t) => (
+          <div class="slide slide-left flex w-full shrink-0 flex-col justify-between p-5 md:p-10">
+            <div class="flex flex-col gap-5">
+              <span class="flex size-10 pt-1.5 pl-[3px]"><Quote class="h-7 w-[35px]" /></span>
+              <p class="type-body [text-wrap:wrap]">{t.quote}</p>
+            </div>
+            <div class="flex flex-col gap-1">
+              <h3 class="type-h3 text-ink">{t.name}</h3>
+              <p class="type-small text-body">{t.role}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+    <div class="edge edge-t edge-r edge-b relative hidden w-[34%] flex-col-reverse overflow-hidden lg:flex">
+      {
+        testimonials.map(({ result, detail, logo }) => (
+          <div class="slide slide-down flex h-full shrink-0 flex-col justify-between p-10">
+            <div class="flex flex-col gap-6">
+              <p class="flex items-baseline gap-0.5 font-grotesk leading-none font-medium text-ink">
+                {result.prefix && <span class="text-[50px]">{result.prefix}</span>}
+                <span data-count={result.value} class="text-[100px]">1</span>
+                <span class="text-[50px]">{result.suffix}</span>
+              </p>
+              <p class="type-body">{detail}</p>
+            </div>
+            <img src={logo} alt="" class="h-12 w-[114px]" loading="lazy" />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .slide {
+    transition: translate 1s cubic-bezier(0.8, 0, 0.2, 1);
+  }
+  .slide-up {
+    translate: 0 calc(var(--i) * (-100% - 1px));
+  }
+  .slide-left {
+    translate: calc(var(--i) * -100%) 0;
+  }
+  .slide-down {
+    translate: 0 calc(var(--i) * 100%);
+  }
+</style>
+
+<script>
+  import "../../scripts/testimonials.ts";
+</script>

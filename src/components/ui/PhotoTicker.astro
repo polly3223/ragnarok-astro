@@ -1,0 +1,24 @@
+---
+// Bordered strip of 600×320 photos scrolling left at 50px/s (scripts/marquee.ts).
+interface Props {
+  photos: string[];
+}
+
+const { photos } = Astro.props;
+---
+
+<div class="edge edge-all relative flex w-full overflow-hidden py-15 md:py-20">
+  <ul data-marquee="50" class="flex w-max gap-6">
+    {
+      photos.map((src) => (
+        <li class="shrink-0">
+          <img src={src} alt="" loading="lazy" class="h-80 w-150 rounded-lg object-cover" />
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<script>
+  import "../../scripts/marquee.ts";
+</script>

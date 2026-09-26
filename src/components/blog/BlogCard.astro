@@ -1,0 +1,30 @@
+---
+// Blog card (index grid and "More Blogs"): cover eases from 104% to 102% width on hover.
+import type { CollectionEntry } from "astro:content";
+import BlogTag from "./BlogTag.astro";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+  /** "More Blogs" placement: draws its own left edge and only zooms on desktop (index cards zoom from tablet up). */
+  more?: boolean;
+}
+
+const { post, more = false } = Astro.props;
+const { title, summary, cover } = post.data;
+const zoom = more
+  ? "lg:absolute lg:-top-1.5 lg:left-1/2 lg:w-[104%] lg:-translate-x-1/2 lg:transition-all lg:duration-500 lg:ease-[cubic-bezier(0.8,0,0.2,1)] lg:group-hover:-top-0.75 lg:group-hover:w-[102%]"
+  : "md:absolute md:-top-1.5 md:left-1/2 md:w-[104%] md:-translate-x-1/2 md:transition-all md:duration-500 md:ease-[cubic-bezier(0.8,0,0.2,1)] md:group-hover:-top-0.75 md:group-hover:w-[102%]";
+---
+
+<a href={`/blog/${post.id}`} class="group flex flex-col">
+  <div class="relative aspect-[1.1265] w-full overflow-hidden">
+    <img src={cover} alt="" loading="lazy" class:list={["aspect-[1.1265] w-full object-cover", zoom]} />
+  </div>
+  <div class:list={["edge edge-t edge-r edge-b relative flex flex-col gap-4 p-5", more && "edge-l"]}>
+    <BlogTag post={post} />
+    <div class="flex flex-col gap-3">
+      <h3 class="type-h3 w-[90%] text-ink">{title}</h3>
+      <p class="text-base leading-[1.4] font-medium tracking-[-0.04em] text-balance text-body md:text-lg">{summary}</p>
+    </div>
+  </div>
+</a>

@@ -1,0 +1,16 @@
+---
+// "CATEGORY | N MIN READ" chip on blog cards and post headers.
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { category, readTime } = Astro.props.post.data;
+---
+
+<div class="edge edge-all relative flex w-max items-center gap-2 rounded bg-white px-3 py-2 font-grotesk text-sm leading-[1.1] tracking-[-0.01em]">
+  <span class="text-ink">{category}</span>
+  <span class="h-2.5 w-px bg-line"></span>
+  <span class="text-body">{readTime}</span>
+</div>

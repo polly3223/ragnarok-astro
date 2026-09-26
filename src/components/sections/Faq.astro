@@ -1,0 +1,93 @@
+---
+// FAQ accordion (exactly one answer open, like the original) — used on home and /pricing.
+import FaqArrow from "../../icons/faq-arrow.svg";
+import AsciiVideo from "../ui/AsciiVideo.astro";
+import Corners from "../ui/Corners.astro";
+import SectionIntro from "../ui/SectionIntro.astro";
+import { faqs } from "../../data/faqs";
+---
+
+<section class="edge edge-b relative flex w-full flex-col overflow-clip md:flex-row md:items-start">
+  <div class="edge edge-l relative flex w-full items-start self-stretch md:flex-1">
+    <div
+      class="edge edge-r edge-b relative flex w-full flex-col gap-5 overflow-hidden px-5 py-15 md:sticky md:top-0 md:edge-r-0 md:px-10 md:pt-20 md:pb-10"
+    >
+      <SectionIntro
+        icon="/images/icons/faq.png"
+        label="FAQ"
+        title="Frequently Asked Questions"
+        lead="Everything you need to know before getting started."
+      />
+      <div class="relative hidden h-[200px] w-[310px] lg:block">
+        <AsciiVideo src="/videos/faq.mp4" class="mask-fade absolute -top-[29px] -left-5 size-[300px] text-primary" />
+      </div>
+      <Corners />
+    </div>
+  </div>
+  <div data-faq class="edge edge-l relative flex w-full flex-col md:flex-1">
+    {
+      faqs.map(([question, answer], i) => (
+        <div data-open={i === 0 ? "" : undefined} class="faq-item edge edge-r edge-b relative bg-page">
+          <button type="button" class="faq-question flex w-full cursor-pointer items-center gap-5 px-5 pt-5 text-left">
+            <h3 class="flex-1 font-grotesk text-xl leading-[1.2] font-medium tracking-[-0.04em] text-ink">{question}</h3>
+            <FaqArrow class="faq-arrow size-5 shrink-0" />
+          </button>
+          <div class="faq-answer grid">
+            <div class="min-h-px overflow-hidden">
+              <div class="flex flex-col gap-4 p-5">
+                <span class="h-px w-full bg-line" />
+                <p class="type-body">{answer}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .faq-item * {
+    transition-duration: 0.5s;
+    transition-timing-function: cubic-bezier(0.82, 0.11, 0.37, 0.82);
+  }
+  .faq-question {
+    padding-bottom: 20px;
+    transition-property: padding;
+  }
+  .faq-arrow {
+    rotate: 180deg;
+    transition-property: rotate;
+  }
+  .faq-answer {
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition-property: grid-template-rows, opacity;
+  }
+  .faq-item[data-open] .faq-question {
+    padding-bottom: 0;
+  }
+  .faq-item[data-open] .faq-arrow {
+    rotate: 0deg;
+  }
+  .faq-item[data-open] .faq-answer {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-faq]").forEach((list) => {
+    const items = [...list.querySelectorAll<HTMLElement>(".faq-item")];
+    for (const item of items) {
+      const button = item.querySelector("button");
+      button?.setAttribute("aria-expanded", String(item.hasAttribute("data-open")));
+      button?.addEventListener("click", () => {
+        for (const other of items) {
+          other.toggleAttribute("data-open", other === item);
+          other.querySelector("button")?.setAttribute("aria-expanded", String(other === item));
+        }
+      });
+    }
+  });
+</script>
