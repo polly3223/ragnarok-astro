@@ -21,6 +21,7 @@ bun run dev
 
 Open **http://localhost:4396**. No API keys, environment variables, database or backend are required.
 Images, videos and fonts are included in the repository.
+If Astro starts the dev server in the background, stop it with `bun --bun astro dev stop`.
 
 To check and build the static site, then preview the production output:
 
